@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-27 해외축구 승점 + 어시스트 대시보드</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-gold: #f59e0b;
+            --accent-silver: #94a3b8;
+            --accent-bronze: #b45309;
+            --accent-blue: #38bdf8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-primary); padding: 20px 12px; max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 24px; }
+        h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 8px; }
+        .meta-info { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .participant-section { margin-bottom: 32px; }
+        .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+
+        .participant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; }
+        .card.rank-1 { border-color: var(--accent-gold); }
+        .card.rank-2 { border-color: var(--accent-silver); }
+        .card.rank-3 { border-color: var(--accent-bronze); }
+
+        .rank-badge { position: absolute; top: 16px; right: 16px; font-weight: 800; padding: 4px 12px; border-radius: 20px; background: var(--border-color); }
+        .rank-1 .rank-badge { background: var(--accent-gold); color: #000; }
+        .rank-2 .rank-badge { background: var(--accent-silver); color: #000; }
+        .rank-3 .rank-badge { background: var(--accent-bronze); color: #fff; }
+
+        .participant-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+        .total-score-box { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        .total-score-value { font-size: 1.8rem; font-weight: 800; color: var(--accent-blue); }
+
+        .league-breakdown { display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; }
+        .league-item { display: flex; justify-content: space-between; color: var(--text-secondary); border-bottom: 1px dashed var(--border-color); padding-bottom: 4px; }
+        .league-item span:last-child { color: var(--text-primary); font-weight: 600; }
+
+        .filter-container { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; }
+        .filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 16px; border-radius: 20px; cursor: pointer; }
+        .filter-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600; }
+
+        .table-container { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; text-align: left; }
+        th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+        th { background: rgba(255,255,255,0.02); color: var(--text-secondary); }
+        .score-cell { color: var(--accent-blue); font-weight: 700; }
+        .badge-participant { background: var(--border-color); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>2026-27 해외축구 승점 + 어시스트</h1>
+        <div class="meta-info">
+            기준일: <span id="data-date">-</span> | 마지막 업데이트: <span id="last-updated">-</span>
+        </div>
+    </header>
+
+    <section class="participant-section">
+        <div class="section-title">🏆 참가자 종합 순위</div>
+        <div class="participant-grid" id="participant-cards"></div>
+    </section>
+
+    <section>
+        <div class="section-title">⚽ 선수별 개인 순위</div>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterLeague('ALL')">전체 리그</button>
+            <button class="filter-btn" onclick="filterLeague('EPL')">EPL</button>
+            <button class="filter-btn" onclick="filterLeague('LaLiga')">LaLiga</button>
+            <button class="filter-btn" onclick="filterLeague('Ligue 1')">Ligue 1</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>순위</th>
+                        <th>참가자</th>
+                        <th>선수</th>
+                        <th>팀</th>
+                        <th>리그</th>
+                        <th>팀 승점</th>
+                        <th>어시스트</th>
+                        <th>합산점수</th>
+                    </tr>
+                </thead>
+                <tbody id="player-table-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        let rawPlayerData = [];
+        let currentFilter = 'ALL';
+
+        // 서버/로컬의 data.json 파일 호출
+        async function fetchSportsData() {
+            try {
+                const response = await fetch('./data.json');
+                return await response.json();
+            } catch (error) {
+                console.error("data.json 로드 실패:", error);
+                return null;
+            }
+        }
+
+        function calculateScores(players) {
+            return players.map(p => ({
+                ...p,
+                totalScore: p.pts + p.assists
+            })).sort((a, b) => b.totalScore - a.totalScore);
+        }
+
+        function calculateParticipantScores(calculatedPlayers) {
+            const participants = {};
+            calculatedPlayers.forEach(p => {
+                if (!participants[p.participant]) {
+                    participants[p.participant] = { name: p.participant, leagues: {}, total: 0 };
+                }
+                participants[p.participant].leagues[p.league] = { player: p.name, score: p.totalScore };
+                participants[p.participant].total += p.totalScore;
+            });
+            return Object.values(participants).sort((a, b) => b.total - a.total);
+        }
+
+        function renderDashboard(data) {
+            if (!data) return;
+            document.getElementById('data-date').innerText = data.metadata.dataDate;
+            document.getElementById('last-updated').innerText = data.metadata.lastUpdated;
+
+            const calculatedPlayers = calculateScores(data.players);
+            rawPlayerData = calculatedPlayers;
+
+            renderParticipantCards(calculateParticipantScores(calculatedPlayers));
+            renderPlayerTable(calculatedPlayers);
+        }
+
+        function renderParticipantCards(participants) {
+            const container = document.getElementById('participant-cards');
+            container.innerHTML = '';
+            participants.forEach((p, index) => {
+                const rank = index + 1;
+                container.innerHTML += `
+                    <div class="card rank-${rank}">
+                        <div class="rank-badge">${rank}위</div>
+                        <div class="participant-name">${p.name}</div>
+                        <div class="total-score-box">
+                            <span>종합 점수</span>
+                            <span class="total-score-value">${p.total}점</span>
+                        </div>
+                        <div class="league-breakdown">
+                            <div class="league-item"><span>EPL (${p.leagues['EPL']?.player || '-'})</span><span>${p.leagues['EPL']?.score || 0}점</span></div>
+                            <div class="league-item"><span>LaLiga (${p.leagues['LaLiga']?.player || '-'})</span><span>${p.leagues['LaLiga']?.score || 0}점</span></div>
+                            <div class="league-item"><span>Ligue 1 (${p.leagues['Ligue 1']?.player || '-'})</span><span>${p.leagues['Ligue 1']?.score || 0}점</span></div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderPlayerTable(players) {
+            const tbody = document.getElementById('player-table-body');
+            tbody.innerHTML = '';
+            const filtered = currentFilter === 'ALL' ? players : players.filter(p => p.league === currentFilter);
+
+            filtered.forEach((p, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="font-weight: bold;">${index + 1}</td>
+                        <td><span class="badge-participant">${p.participant}</span></td>
+                        <td><strong>${p.name}</strong></td>
+                        <td>${p.team}</td>
+                        <td>${p.league}</td>
+                        <td>${p.pts}</td>
+                        <td>${p.assists}</td>
+                        <td class="score-cell">${p.totalScore}점</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function filterLeague(league) {
+            currentFilter = league;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText.includes(league) || (league === 'ALL' && btn.innerText === '전체 리그'));
+            });
+            renderPlayerTable(rawPlayerData);
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const data = await fetchSportsData();
+            renderDashboard(data);
+        });
+    </script>
+</body>
+</html>
