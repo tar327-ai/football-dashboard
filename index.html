@@ -50,11 +50,16 @@
         .filter-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600; }
 
         .table-container { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; min-width: 600px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; min-width: 750px; text-align: left; }
         th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
         th { background: rgba(255,255,255,0.02); color: var(--text-secondary); }
         .score-cell { color: var(--accent-blue); font-weight: 700; }
         .badge-participant { background: var(--border-color); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+        
+        /* 다음 경기 일정 전용 스타일 */
+        .match-info-cell { font-size: 0.82rem; line-height: 1.3; }
+        .match-date { color: var(--accent-gold); font-weight: 600; }
+        .match-vs { color: var(--text-secondary); }
     </style>
 </head>
 <body>
@@ -92,6 +97,7 @@
                         <th>팀 승점</th>
                         <th>어시스트</th>
                         <th>합산점수</th>
+                        <th>다음 리그 경기</th>
                     </tr>
                 </thead>
                 <tbody id="player-table-body"></tbody>
@@ -103,7 +109,6 @@
         let rawPlayerData = [];
         let currentFilter = 'ALL';
 
-        // 서버/로컬의 data.json 파일 호출
         async function fetchSportsData() {
             try {
                 const response = await fetch('./data.json');
@@ -174,6 +179,17 @@
             const filtered = currentFilter === 'ALL' ? players : players.filter(p => p.league === currentFilter);
 
             filtered.forEach((p, index) => {
+                // 다음 경기 일정 파싱
+                let nextMatchHTML = '<span class="match-vs">일정 없음</span>';
+                if (p.nextMatch && p.nextMatch.matchSummary) {
+                    nextMatchHTML = `
+                        <div class="match-info-cell">
+                            <div class="match-date">${p.nextMatch.matchDate}</div>
+                            <div class="match-vs">${p.nextMatch.matchSummary}</div>
+                        </div>
+                    `;
+                }
+
                 tbody.innerHTML += `
                     <tr>
                         <td style="font-weight: bold;">${index + 1}</td>
@@ -184,6 +200,7 @@
                         <td>${p.pts}</td>
                         <td>${p.assists}</td>
                         <td class="score-cell">${p.totalScore}점</td>
+                        <td>${nextMatchHTML}</td>
                     </tr>
                 `;
             });
