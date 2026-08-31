@@ -1,79 +1,79 @@
 {
   "metadata": {
     "dataDate": "2026-08-31",
-    "lastUpdated": "2026-08-31 01:41 KST"
+    "lastUpdated": "2026-08-31 01:49 KST"
   },
   "players": [
     {
       "participant": "햆",
       "name": "부카요 사카",
-      "team": "아스널",
+      "team": 57,
       "league": "EPL",
-      "pts": 0,
+      "pts": 3,
       "assists": 0
     },
     {
       "participant": "햆",
       "name": "주드 벨링엄",
-      "team": "레알 마드리드",
+      "team": 86,
       "league": "LaLiga",
-      "pts": 0,
+      "pts": 9,
       "assists": 0
     },
     {
       "participant": "햆",
       "name": "하콘 아르드나르 하랄손",
-      "team": "릴",
+      "team": 521,
       "league": "Ligue 1",
-      "pts": 0,
+      "pts": 4,
       "assists": 0
     },
     {
       "participant": "갮",
       "name": "브루노 페르난데스",
-      "team": "맨체스터 유나이티드",
+      "team": 66,
       "league": "EPL",
-      "pts": 0,
+      "pts": 3,
       "assists": 0
     },
     {
       "participant": "갮",
       "name": "라민 야말",
-      "team": "바르셀로나",
+      "team": 81,
       "league": "LaLiga",
-      "pts": 0,
+      "pts": 6,
       "assists": 0
     },
     {
       "participant": "갮",
       "name": "메이슨 그린우드",
-      "team": "마르세유",
+      "team": 516,
       "league": "Ligue 1",
-      "pts": 0,
+      "pts": 3,
       "assists": 0
     },
     {
       "participant": "돖",
       "name": "라얀 셰르키",
-      "team": "맨체스터 시티",
+      "team": 65,
       "league": "EPL",
-      "pts": 0,
+      "pts": 6,
       "assists": 0
     },
     {
       "participant": "돖",
       "name": "알렉스 바에나",
-      "team": "아틀레티코 마드리드",
+      "team": 78,
       "league": "LaLiga",
-      "pts": 0,
+      "pts": 7,
       "assists": 0
     },
     {
       "participant": "돖",
       "name": "우스만 뎀벨레",
-      "team": "PSG",
+      "team": 524,
       "league": "Ligue 1",
-      "pts": 0,
+      "pts": 2,
       "assists": 0
     }
   ]
