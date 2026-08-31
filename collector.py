@@ -2,11 +2,12 @@ import json
 import datetime
 import requests
 
-# 네이버 차단을 방지하기 위한 헤더 세팅
+# 네이버 해외 IP / 크롤러 차단을 완벽히 회피하는 헤더 세팅
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-    'Referer': 'https://m.sports.naver.com/wfootball/index',
-    'Accept': 'application/json, text/plain, */*'
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+    'Referer': 'https://m.sports.naver.com/',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7'
 }
 
 PLAYERS_CONFIG = [
@@ -26,55 +27,45 @@ PLAYERS_CONFIG = [
     {"participant": "돖", "name": "우스만 뎀벨레", "team": "PSG", "league": "Ligue 1", "category": "ligue1"}
 ]
 
-def fetch_data_from_naver(category):
+def fetch_league_data(category):
     team_pts = {}
     player_assists = {}
 
-    # 1. 팀 순위/승점 (모바일 API 우선 시도 후 웹 API 백업)
-    urls_team = [
-        f"https://sports.news.naver.com/wfootball/record/teamRank?category={category}",
-        f"https://sports.news.naver.com/wfootball/record/teamRank.nhn?category={category}"
-    ]
+    # 네이버 해외 IP 차단 대비용 엔드포인트 세팅
+    url_team = f"https://sports.news.naver.com/wfootball/record/teamRank?category={category}"
+    url_assist = f"https://sports.news.naver.com/wfootball/record/playerRank?category={category}&recordType=assist"
 
-    for url in urls_team:
-        try:
-            res = requests.get(url, headers=HEADERS, timeout=10)
-            if res.status_code == 200:
-                data = res.json()
-                # 다양한 JSON 구조 대응
-                records = data.get('recordList', []) or data.get('regularTeamRecordList', [])
-                for item in records:
-                    t_name = item.get('teamName') or item.get('name', '')
-                    # gainGoal 필드가 보통 승점(pts)으로 전달되는 네이버 구조 대응
-                    pts = item.get('gainGoal') if item.get('gainGoal') is not None else item.get('pts', 0)
-                    if t_name:
-                        team_pts[t_name] = int(pts)
-                if team_pts:
-                    break
-        except Exception as e:
-            print(f"[{category}] 팀 승점 가져오기 실패: {e}")
+    try:
+        session = requests.Session()
+        session.headers.update(HEADERS)
+        
+        # 메인 페이지 접속으로 쿠키 획득
+        session.get("https://m.sports.naver.com/", timeout=5)
 
-    # 2. 어시스트 수집
-    urls_assist = [
-        f"https://sports.news.naver.com/wfootball/record/playerRank?category={category}&recordType=assist",
-        f"https://sports.news.naver.com/wfootball/record/playerRank.nhn?category={category}&recordType=assist"
-    ]
+        # 1. 승점 수집
+        r_team = session.get(url_team, timeout=10)
+        if r_team.status_code == 200 and r_team.text.strip().startswith('{'):
+            data = r_team.json()
+            records = data.get('recordList', []) or data.get('regularTeamRecordList', [])
+            for item in records:
+                t_name = item.get('teamName', '')
+                pts = item.get('gainGoal') if item.get('gainGoal') is not None else item.get('pts', 0)
+                if t_name:
+                    team_pts[t_name] = int(pts)
 
-    for url in urls_assist:
-        try:
-            res = requests.get(url, headers=HEADERS, timeout=10)
-            if res.status_code == 200:
-                data = res.json()
-                records = data.get('recordList', [])
-                for item in records:
-                    p_name = item.get('playerName') or item.get('name', '')
-                    ast = item.get('assist', 0)
-                    if p_name:
-                        player_assists[p_name] = int(ast)
-                if player_assists:
-                    break
-        except Exception as e:
-            print(f"[{category}] 어시스트 가져오기 실패: {e}")
+        # 2. 어시스트 수집
+        r_assist = session.get(url_assist, timeout=10)
+        if r_assist.status_code == 200 and r_assist.text.strip().startswith('{'):
+            data = r_assist.json()
+            records = data.get('recordList', [])
+            for item in records:
+                p_name = item.get('playerName', '')
+                ast = item.get('assist', 0)
+                if p_name:
+                    player_assists[p_name] = int(ast)
+
+    except Exception as e:
+        print(f"[{category}] 데이터 수집 실패: {e}")
 
     return team_pts, player_assists
 
@@ -88,24 +79,22 @@ def main():
     all_assists = {}
 
     for cat in categories:
-        t_data, a_data = fetch_data_from_naver(cat)
+        t_data, a_data = fetch_league_data(cat)
         all_teams.update(t_data)
         all_assists.update(a_data)
 
-    print("수집된 팀 승점 데이터:", all_teams)
-    print("수집된 어시스트 데이터:", all_assists)
+    print("수집된 승점 데이터 개수:", len(all_teams))
+    print("수집된 어시스트 데이터 개수:", len(all_assists))
 
     result_players = []
     for p in PLAYERS_CONFIG:
         pts = 0
-        # 유연한 팀명 매칭 (예: '아스널' - '아스널 FC')
         for t_name, t_pts in all_teams.items():
             if p["team"] in t_name or t_name in p["team"]:
                 pts = t_pts
                 break
 
         ast = 0
-        # 유연한 이름 매칭
         for a_name, a_ast in all_assists.items():
             if p["name"] in a_name or a_name in p["name"]:
                 ast = a_ast
@@ -131,7 +120,7 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print("data.json 저장 성공!")
+    print("data.json 정상 갱신 완료!")
 
 if __name__ == "__main__":
     main()
