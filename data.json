@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-08-31",
-    "lastUpdated": "2026-08-31 01:59 KST"
+    "lastUpdated": "2026-08-31 21:05 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 3,
+      "pts": 6,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/01 04:00 KST",
-        "homeTeam": "Aston Villa FC",
-        "awayTeam": "아스널",
-        "matchSummary": "Aston Villa FC vs 아스널"
+        "matchDate": "09/07 00:30 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "Chelsea FC",
+        "matchSummary": "아스널 vs Chelsea FC"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 6,
+      "pts": 9,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/01 04:30 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "Rayo Vallecano de Madrid",
-        "matchSummary": "바르셀로나 vs Rayo Vallecano de Madrid"
+        "matchDate": "09/06 23:15 KST",
+        "homeTeam": "Valencia CF",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "Valencia CF vs 바르셀로나"
       }
     },
     {
