@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-08-31",
-    "lastUpdated": "2026-08-31 01:54 KST"
+    "lastUpdated": "2026-08-31 01:59 KST"
   },
   "players": [
     {
@@ -10,7 +10,13 @@
       "team": "아스널",
       "league": "EPL",
       "pts": 3,
-      "assists": 0
+      "assists": 0,
+      "nextMatch": {
+        "matchDate": "09/01 04:00 KST",
+        "homeTeam": "Aston Villa FC",
+        "awayTeam": "아스널",
+        "matchSummary": "Aston Villa FC vs 아스널"
+      }
     },
     {
       "participant": "햆",
@@ -18,7 +24,13 @@
       "team": "레알 마드리드",
       "league": "LaLiga",
       "pts": 9,
-      "assists": 2
+      "assists": 2,
+      "nextMatch": {
+        "matchDate": "09/05 04:00 KST",
+        "homeTeam": "Real Betis Balompié",
+        "awayTeam": "레알 마드리드",
+        "matchSummary": "Real Betis Balompié vs 레알 마드리드"
+      }
     },
     {
       "participant": "햆",
@@ -26,7 +38,13 @@
       "team": "릴",
       "league": "Ligue 1",
       "pts": 4,
-      "assists": 0
+      "assists": 0,
+      "nextMatch": {
+        "matchDate": "09/04 03:45 KST",
+        "homeTeam": "Toulouse FC",
+        "awayTeam": "릴",
+        "matchSummary": "Toulouse FC vs 릴"
+      }
     },
     {
       "participant": "갮",
@@ -34,7 +52,13 @@
       "team": "맨체스터 유나이티드",
       "league": "EPL",
       "pts": 3,
-      "assists": 1
+      "assists": 1,
+      "nextMatch": {
+        "matchDate": "09/06 22:00 KST",
+        "homeTeam": "Everton FC",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "Everton FC vs 맨체스터 유나이티드"
+      }
     },
     {
       "participant": "갮",
@@ -42,7 +66,13 @@
       "team": "바르셀로나",
       "league": "LaLiga",
       "pts": 6,
-      "assists": 0
+      "assists": 0,
+      "nextMatch": {
+        "matchDate": "09/01 04:30 KST",
+        "homeTeam": "바르셀로나",
+        "awayTeam": "Rayo Vallecano de Madrid",
+        "matchSummary": "바르셀로나 vs Rayo Vallecano de Madrid"
+      }
     },
     {
       "participant": "갮",
@@ -50,7 +80,13 @@
       "team": "마르세유",
       "league": "Ligue 1",
       "pts": 3,
-      "assists": 0
+      "assists": 0,
+      "nextMatch": {
+        "matchDate": "09/07 03:45 KST",
+        "homeTeam": "마르세유",
+        "awayTeam": "Paris FC",
+        "matchSummary": "마르세유 vs Paris FC"
+      }
     },
     {
       "participant": "돖",
@@ -58,7 +94,13 @@
       "team": "맨체스터 시티",
       "league": "EPL",
       "pts": 6,
-      "assists": 2
+      "assists": 2,
+      "nextMatch": {
+        "matchDate": "09/05 23:00 KST",
+        "homeTeam": "맨체스터 시티",
+        "awayTeam": "Coventry City FC",
+        "matchSummary": "맨체스터 시티 vs Coventry City FC"
+      }
     },
     {
       "participant": "돖",
@@ -66,7 +108,13 @@
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
       "pts": 7,
-      "assists": 1
+      "assists": 1,
+      "nextMatch": {
+        "matchDate": "09/05 23:15 KST",
+        "homeTeam": "Athletic Club",
+        "awayTeam": "아틀레티코 마드리드",
+        "matchSummary": "Athletic Club vs 아틀레티코 마드리드"
+      }
     },
     {
       "participant": "돖",
@@ -74,7 +122,13 @@
       "team": "PSG",
       "league": "Ligue 1",
       "pts": 2,
-      "assists": 0
+      "assists": 0,
+      "nextMatch": {
+        "matchDate": "09/05 04:05 KST",
+        "homeTeam": "PSG",
+        "awayTeam": "AS Monaco FC",
+        "matchSummary": "PSG vs AS Monaco FC"
+      }
     }
   ]
 }
