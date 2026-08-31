@@ -25,7 +25,7 @@ jobs:
           pip install requests beautifulsoup4
 
       - name: Run Collector Script
-          env:
+        env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: python collector.py
 
