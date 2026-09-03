@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-02",
-    "lastUpdated": "2026-09-02 21:08 KST"
+    "dataDate": "2026-09-03",
+    "lastUpdated": "2026-09-03 21:09 KST"
   },
   "players": [
     {
@@ -26,10 +26,10 @@
       "pts": 9,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/05 04:00 KST",
-        "homeTeam": "Real Betis Balompié",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "Real Betis Balompié vs 레알 마드리드"
+        "matchDate": "09/13 04:00 KST",
+        "homeTeam": "레알 마드리드",
+        "awayTeam": "Rayo Vallecano de Madrid",
+        "matchSummary": "레알 마드리드 vs Rayo Vallecano de Madrid"
       }
     },
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 4,
+      "pts": 7,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/04 03:45 KST",
-        "homeTeam": "Toulouse FC",
-        "awayTeam": "릴",
-        "matchSummary": "Toulouse FC vs 릴"
+        "matchDate": "09/13 22:00 KST",
+        "homeTeam": "릴",
+        "awayTeam": "ES Troyes AC",
+        "matchSummary": "릴 vs ES Troyes AC"
       }
     },
     {
@@ -110,10 +110,10 @@
       "pts": 7,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/05 23:15 KST",
-        "homeTeam": "Athletic Club",
+        "matchDate": "09/14 04:00 KST",
+        "homeTeam": "Real Sociedad de Fútbol",
         "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "Athletic Club vs 아틀레티코 마드리드"
+        "matchSummary": "Real Sociedad de Fútbol vs 아틀레티코 마드리드"
       }
     },
     {
