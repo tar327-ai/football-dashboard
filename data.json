@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-09-04",
-    "lastUpdated": "2026-09-04 00:07 KST"
+    "lastUpdated": "2026-09-04 21:08 KST"
   },
   "players": [
     {
@@ -12,10 +12,10 @@
       "pts": 6,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/07 00:30 KST",
-        "homeTeam": "아스널",
-        "awayTeam": "첼시",
-        "matchSummary": "아스널 vs 첼시"
+        "matchDate": "11/02 01:30 KST",
+        "homeTeam": "리버풀",
+        "awayTeam": "아스널",
+        "matchSummary": "리버풀 vs 아스널"
       }
     },
     {
@@ -26,10 +26,10 @@
       "pts": 9,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/05 04:00 KST",
-        "homeTeam": "베티스",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "베티스 vs 레알 마드리드"
+        "matchDate": "09/13 04:00 KST",
+        "homeTeam": "레알 마드리드",
+        "awayTeam": "라요 바예카노",
+        "matchSummary": "레알 마드리드 vs 라요 바예카노"
       }
     },
     {
@@ -54,10 +54,10 @@
       "pts": 3,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/06 22:00 KST",
-        "homeTeam": "에버튼",
-        "awayTeam": "맨체스터 유나이티드",
-        "matchSummary": "에버튼 vs 맨체스터 유나이티드"
+        "matchDate": "10/25 23:00 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "AFC Bournemouth",
+        "matchSummary": "맨체스터 유나이티드 vs AFC Bournemouth"
       }
     },
     {
@@ -96,10 +96,10 @@
       "pts": 6,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/05 23:00 KST",
+        "matchDate": "11/01 00:00 KST",
         "homeTeam": "맨체스터 시티",
-        "awayTeam": "Coventry City",
-        "matchSummary": "맨체스터 시티 vs Coventry City"
+        "awayTeam": "브라이튼",
+        "matchSummary": "맨체스터 시티 vs 브라이튼"
       }
     },
     {
@@ -124,10 +124,10 @@
       "pts": 2,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/05 04:05 KST",
-        "homeTeam": "PSG",
-        "awayTeam": "모나코",
-        "matchSummary": "PSG vs 모나코"
+        "matchDate": "09/14 03:45 KST",
+        "homeTeam": "Stade Brestois 29",
+        "awayTeam": "PSG",
+        "matchSummary": "Stade Brestois 29 vs PSG"
       }
     }
   ]
