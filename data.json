@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-04",
-    "lastUpdated": "2026-09-04 21:08 KST"
+    "dataDate": "2026-09-05",
+    "lastUpdated": "2026-09-05 21:08 KST"
   },
   "players": [
     {
@@ -12,10 +12,10 @@
       "pts": 6,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/02 01:30 KST",
-        "homeTeam": "리버풀",
-        "awayTeam": "아스널",
-        "matchSummary": "리버풀 vs 아스널"
+        "matchDate": "09/07 00:30 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "첼시",
+        "matchSummary": "아스널 vs 첼시"
       }
     },
     {
@@ -54,10 +54,10 @@
       "pts": 3,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "10/25 23:00 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "AFC Bournemouth",
-        "matchSummary": "맨체스터 유나이티드 vs AFC Bournemouth"
+        "matchDate": "09/06 22:00 KST",
+        "homeTeam": "에버튼",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "에버튼 vs 맨체스터 유나이티드"
       }
     },
     {
@@ -93,13 +93,13 @@
       "name": "라얀 셰르키",
       "team": "맨체스터 시티",
       "league": "EPL",
-      "pts": 6,
+      "pts": 9,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/01 00:00 KST",
-        "homeTeam": "맨체스터 시티",
-        "awayTeam": "브라이튼",
-        "matchSummary": "맨체스터 시티 vs 브라이튼"
+        "matchDate": "09/14 00:30 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "맨체스터 유나이티드 vs 맨체스터 시티"
       }
     },
     {
@@ -110,10 +110,10 @@
       "pts": 7,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/05 23:15 KST",
-        "homeTeam": "아틀레틱 빌바오",
+        "matchDate": "09/14 04:00 KST",
+        "homeTeam": "레알 소시에다드",
         "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "아틀레틱 빌바오 vs 아틀레티코 마드리드"
+        "matchSummary": "레알 소시에다드 vs 아틀레티코 마드리드"
       }
     },
     {
