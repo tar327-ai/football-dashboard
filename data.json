@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-05",
-    "lastUpdated": "2026-09-05 21:08 KST"
+    "dataDate": "2026-09-06",
+    "lastUpdated": "2026-09-06 21:08 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 6,
+      "pts": 9,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/07 00:30 KST",
-        "homeTeam": "아스널",
-        "awayTeam": "첼시",
-        "matchSummary": "아스널 vs 첼시"
+        "matchDate": "09/13 04:00 KST",
+        "homeTeam": "Sunderland AFC",
+        "awayTeam": "아스널",
+        "matchSummary": "Sunderland AFC vs 아스널"
       }
     },
     {
@@ -51,13 +51,13 @@
       "name": "브루노 페르난데스",
       "team": "맨체스터 유나이티드",
       "league": "EPL",
-      "pts": 3,
+      "pts": 4,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/06 22:00 KST",
-        "homeTeam": "에버튼",
-        "awayTeam": "맨체스터 유나이티드",
-        "matchSummary": "에버튼 vs 맨체스터 유나이티드"
+        "matchDate": "09/14 00:30 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "맨체스터 유나이티드 vs 맨체스터 시티"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 9,
+      "pts": 12,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/06 23:15 KST",
-        "homeTeam": "발렌시아",
+        "matchDate": "09/13 23:15 KST",
+        "homeTeam": "Levante UD",
         "awayTeam": "바르셀로나",
-        "matchSummary": "발렌시아 vs 바르셀로나"
+        "matchSummary": "Levante UD vs 바르셀로나"
       }
     },
     {
@@ -82,10 +82,10 @@
       "pts": 3,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/07 03:45 KST",
-        "homeTeam": "마르세유",
-        "awayTeam": "Paris",
-        "matchSummary": "마르세유 vs Paris"
+        "matchDate": "09/12 03:45 KST",
+        "homeTeam": "Stade Rennais 1901",
+        "awayTeam": "마르세유",
+        "matchSummary": "Stade Rennais 1901 vs 마르세유"
       }
     },
     {
