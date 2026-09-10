@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-09",
-    "lastUpdated": "2026-09-09 21:08 KST"
+    "dataDate": "2026-09-10",
+    "lastUpdated": "2026-09-10 21:08 KST"
   },
   "players": [
     {
@@ -40,10 +40,10 @@
       "pts": 7,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/13 22:00 KST",
-        "homeTeam": "릴",
-        "awayTeam": "ES Troyes AC",
-        "matchSummary": "릴 vs ES Troyes AC"
+        "matchDate": "10/25 23:00 KST",
+        "homeTeam": "모나코",
+        "awayTeam": "릴",
+        "matchSummary": "모나코 vs 릴"
       }
     },
     {
@@ -82,10 +82,10 @@
       "pts": 3,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/12 03:45 KST",
-        "homeTeam": "Stade Rennais 1901",
-        "awayTeam": "마르세유",
-        "matchSummary": "Stade Rennais 1901 vs 마르세유"
+        "matchDate": "10/26 01:15 KST",
+        "homeTeam": "마르세유",
+        "awayTeam": "Le Havre AC",
+        "matchSummary": "마르세유 vs Le Havre AC"
       }
     },
     {
@@ -124,10 +124,10 @@
       "pts": 2,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/14 03:45 KST",
-        "homeTeam": "Stade Brestois 29",
-        "awayTeam": "PSG",
-        "matchSummary": "Stade Brestois 29 vs PSG"
+        "matchDate": "10/26 04:45 KST",
+        "homeTeam": "PSG",
+        "awayTeam": "리옹",
+        "matchSummary": "PSG vs 리옹"
       }
     }
   ]
