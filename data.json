@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-11",
-    "lastUpdated": "2026-09-11 21:08 KST"
+    "dataDate": "2026-09-12",
+    "lastUpdated": "2026-09-12 21:08 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 9,
+      "pts": 12,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/13 04:00 KST",
-        "homeTeam": "Sunderland AFC",
+        "matchDate": "09/19 23:00 KST",
+        "homeTeam": "브라이튼",
         "awayTeam": "아스널",
-        "matchSummary": "Sunderland AFC vs 아스널"
+        "matchSummary": "브라이튼 vs 아스널"
       }
     },
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 9,
+      "pts": 12,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/25 09:00 KST",
-        "homeTeam": "바르셀로나",
+        "matchDate": "09/16 04:30 KST",
+        "homeTeam": "Elche",
         "awayTeam": "레알 마드리드",
-        "matchSummary": "바르셀로나 vs 레알 마드리드"
+        "matchSummary": "Elche vs 레알 마드리드"
       }
     },
     {
@@ -68,10 +68,10 @@
       "pts": 12,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/25 09:00 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "바르셀로나 vs 레알 마드리드"
+        "matchDate": "09/13 23:15 KST",
+        "homeTeam": "Levante UD",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "Levante UD vs 바르셀로나"
       }
     },
     {
@@ -110,10 +110,10 @@
       "pts": 7,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "10/25 09:00 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "RC Deportivo La Coruña",
-        "matchSummary": "아틀레티코 마드리드 vs RC Deportivo La Coruña"
+        "matchDate": "09/14 04:00 KST",
+        "homeTeam": "레알 소시에다드",
+        "awayTeam": "아틀레티코 마드리드",
+        "matchSummary": "레알 소시에다드 vs 아틀레티코 마드리드"
       }
     },
     {
