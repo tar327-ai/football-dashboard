@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-12",
-    "lastUpdated": "2026-09-12 21:08 KST"
+    "dataDate": "2026-09-13",
+    "lastUpdated": "2026-09-13 21:08 KST"
   },
   "players": [
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 7,
+      "pts": 10,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/13 22:00 KST",
-        "homeTeam": "릴",
-        "awayTeam": "ES Troyes AC",
-        "matchSummary": "릴 vs ES Troyes AC"
+        "matchDate": "09/21 00:15 KST",
+        "homeTeam": "니스",
+        "awayTeam": "릴",
+        "matchSummary": "니스 vs 릴"
       }
     },
     {
@@ -54,10 +54,10 @@
       "pts": 4,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/14 00:30 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "맨체스터 시티",
-        "matchSummary": "맨체스터 유나이티드 vs 맨체스터 시티"
+        "matchDate": "09/21 00:30 KST",
+        "homeTeam": "Fulham",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "Fulham vs 맨체스터 유나이티드"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 12,
+      "pts": 15,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/13 23:15 KST",
-        "homeTeam": "Levante UD",
-        "awayTeam": "바르셀로나",
-        "matchSummary": "Levante UD vs 바르셀로나"
+        "matchDate": "09/17 04:30 KST",
+        "homeTeam": "바르셀로나",
+        "awayTeam": "Real Racing Club de Santander",
+        "matchSummary": "바르셀로나 vs Real Racing Club de Santander"
       }
     },
     {
@@ -93,13 +93,13 @@
       "name": "라얀 셰르키",
       "team": "맨체스터 시티",
       "league": "EPL",
-      "pts": 9,
+      "pts": 12,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/14 00:30 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "맨체스터 시티",
-        "matchSummary": "맨체스터 유나이티드 vs 맨체스터 시티"
+        "matchDate": "09/20 22:00 KST",
+        "homeTeam": "맨체스터 시티",
+        "awayTeam": "Sunderland AFC",
+        "matchSummary": "맨체스터 시티 vs Sunderland AFC"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 7,
+      "pts": 10,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/14 04:00 KST",
-        "homeTeam": "레알 소시에다드",
-        "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "레알 소시에다드 vs 아틀레티코 마드리드"
+        "matchDate": "09/17 02:00 KST",
+        "homeTeam": "아틀레티코 마드리드",
+        "awayTeam": "오사수나",
+        "matchSummary": "아틀레티코 마드리드 vs 오사수나"
       }
     },
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 2,
+      "pts": 5,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/14 03:45 KST",
-        "homeTeam": "Stade Brestois 29",
+        "matchDate": "09/21 03:45 KST",
+        "homeTeam": "마르세유",
         "awayTeam": "PSG",
-        "matchSummary": "Stade Brestois 29 vs PSG"
+        "matchSummary": "마르세유 vs PSG"
       }
     }
   ]
