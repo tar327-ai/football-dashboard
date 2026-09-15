@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-14",
-    "lastUpdated": "2026-09-14 21:09 KST"
+    "dataDate": "2026-09-15",
+    "lastUpdated": "2026-09-15 21:09 KST"
   },
   "players": [
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 12,
+      "pts": 15,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/16 04:30 KST",
-        "homeTeam": "Elche",
+        "matchDate": "09/20 23:15 KST",
+        "homeTeam": "아틀레티코 마드리드",
         "awayTeam": "레알 마드리드",
-        "matchSummary": "Elche vs 레알 마드리드"
+        "matchSummary": "아틀레티코 마드리드 vs 레알 마드리드"
       }
     },
     {
