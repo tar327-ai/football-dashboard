@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-15",
-    "lastUpdated": "2026-09-15 21:09 KST"
+    "dataDate": "2026-09-16",
+    "lastUpdated": "2026-09-16 21:09 KST"
   },
   "players": [
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 15,
-      "assists": 0,
+      "pts": 18,
+      "assists": 1,
       "nextMatch": {
-        "matchDate": "09/17 04:30 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "Real Racing Club de Santander",
-        "matchSummary": "바르셀로나 vs Real Racing Club de Santander"
+        "matchDate": "09/20 04:00 KST",
+        "homeTeam": "세비야",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "세비야 vs 바르셀로나"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 10,
+      "pts": 13,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/17 02:00 KST",
+        "matchDate": "09/20 23:15 KST",
         "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "오사수나",
-        "matchSummary": "아틀레티코 마드리드 vs 오사수나"
+        "awayTeam": "레알 마드리드",
+        "matchSummary": "아틀레티코 마드리드 vs 레알 마드리드"
       }
     },
     {
