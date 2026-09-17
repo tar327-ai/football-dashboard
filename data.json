@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-16",
-    "lastUpdated": "2026-09-16 21:09 KST"
+    "dataDate": "2026-09-17",
+    "lastUpdated": "2026-09-17 21:09 KST"
   },
   "players": [
     {
@@ -66,7 +66,7 @@
       "team": "바르셀로나",
       "league": "LaLiga",
       "pts": 18,
-      "assists": 1,
+      "assists": 2,
       "nextMatch": {
         "matchDate": "09/20 04:00 KST",
         "homeTeam": "세비야",
