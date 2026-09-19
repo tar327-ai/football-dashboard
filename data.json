@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-18",
-    "lastUpdated": "2026-09-18 21:08 KST"
+    "dataDate": "2026-09-19",
+    "lastUpdated": "2026-09-19 21:08 KST"
   },
   "players": [
     {
@@ -12,10 +12,10 @@
       "pts": 12,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/19 23:00 KST",
-        "homeTeam": "브라이튼",
-        "awayTeam": "아스널",
-        "matchSummary": "브라이튼 vs 아스널"
+        "matchDate": "10/10 20:30 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "Leeds United",
+        "matchSummary": "아스널 vs Leeds United"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 18,
-      "assists": 2,
+      "pts": 21,
+      "assists": 4,
       "nextMatch": {
-        "matchDate": "09/20 04:00 KST",
-        "homeTeam": "세비야",
-        "awayTeam": "바르셀로나",
-        "matchSummary": "세비야 vs 바르셀로나"
+        "matchDate": "10/11 01:30 KST",
+        "homeTeam": "바르셀로나",
+        "awayTeam": "헤타페",
+        "matchSummary": "바르셀로나 vs 헤타페"
       }
     },
     {
