@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-09-19",
-    "lastUpdated": "2026-09-19 21:08 KST"
+    "dataDate": "2026-09-20",
+    "lastUpdated": "2026-09-20 21:08 KST"
   },
   "players": [
     {
@@ -26,10 +26,10 @@
       "pts": 15,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/20 23:15 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "아틀레티코 마드리드 vs 레알 마드리드"
+        "matchDate": "10/11 04:00 KST",
+        "homeTeam": "레알 마드리드",
+        "awayTeam": "비야레알",
+        "matchSummary": "레알 마드리드 vs 비야레알"
       }
     },
     {
@@ -40,10 +40,10 @@
       "pts": 10,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/21 00:15 KST",
-        "homeTeam": "니스",
-        "awayTeam": "릴",
-        "matchSummary": "니스 vs 릴"
+        "matchDate": "10/11 00:15 KST",
+        "homeTeam": "릴",
+        "awayTeam": "Le Havre AC",
+        "matchSummary": "릴 vs Le Havre AC"
       }
     },
     {
@@ -51,13 +51,13 @@
       "name": "브루노 페르난데스",
       "team": "맨체스터 유나이티드",
       "league": "EPL",
-      "pts": 4,
+      "pts": 5,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/21 00:30 KST",
-        "homeTeam": "Fulham",
-        "awayTeam": "맨체스터 유나이티드",
-        "matchSummary": "Fulham vs 맨체스터 유나이티드"
+        "matchDate": "10/11 01:30 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "토트넘",
+        "matchSummary": "맨체스터 유나이티드 vs 토트넘"
       }
     },
     {
@@ -82,10 +82,10 @@
       "pts": 3,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/21 03:45 KST",
-        "homeTeam": "마르세유",
-        "awayTeam": "PSG",
-        "matchSummary": "마르세유 vs PSG"
+        "matchDate": "10/12 03:45 KST",
+        "homeTeam": "ES Troyes AC",
+        "awayTeam": "마르세유",
+        "matchSummary": "ES Troyes AC vs 마르세유"
       }
     },
     {
@@ -93,13 +93,13 @@
       "name": "라얀 셰르키",
       "team": "맨체스터 시티",
       "league": "EPL",
-      "pts": 12,
+      "pts": 15,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "09/20 22:00 KST",
-        "homeTeam": "맨체스터 시티",
-        "awayTeam": "Sunderland AFC",
-        "matchSummary": "맨체스터 시티 vs Sunderland AFC"
+        "matchDate": "10/12 00:30 KST",
+        "homeTeam": "리버풀",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "리버풀 vs 맨체스터 시티"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 13,
+      "pts": 16,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "09/20 23:15 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "아틀레티코 마드리드 vs 레알 마드리드"
+        "matchDate": "10/10 23:15 KST",
+        "homeTeam": "Deportivo Alavés",
+        "awayTeam": "아틀레티코 마드리드",
+        "matchSummary": "Deportivo Alavés vs 아틀레티코 마드리드"
       }
     },
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 5,
+      "pts": 8,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "09/21 03:45 KST",
-        "homeTeam": "마르세유",
-        "awayTeam": "PSG",
-        "matchSummary": "마르세유 vs PSG"
+        "matchDate": "10/11 03:45 KST",
+        "homeTeam": "PSG",
+        "awayTeam": "Le Mans",
+        "matchSummary": "PSG vs Le Mans"
       }
     }
   ]
