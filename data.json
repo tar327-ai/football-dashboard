@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-10",
-    "lastUpdated": "2026-10-10 00:29 KST"
+    "dataDate": "2026-10-11",
+    "lastUpdated": "2026-10-11 00:05 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 12,
+      "pts": 15,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/10 20:30 KST",
-        "homeTeam": "아스널",
-        "awayTeam": "Leeds United",
-        "matchSummary": "아스널 vs Leeds United"
+        "matchDate": "10/19 00:30 KST",
+        "homeTeam": "Nottingham Forest",
+        "awayTeam": "아스널",
+        "matchSummary": "Nottingham Forest vs 아스널"
       }
     },
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 15,
+      "pts": 18,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/11 04:00 KST",
+        "matchDate": "10/19 04:00 KST",
         "homeTeam": "레알 마드리드",
-        "awayTeam": "비야레알",
-        "matchSummary": "레알 마드리드 vs 비야레알"
+        "awayTeam": "세비야",
+        "matchSummary": "레알 마드리드 vs 세비야"
       }
     },
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 10,
+      "pts": 13,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/11 00:15 KST",
+        "matchDate": "10/18 03:45 KST",
         "homeTeam": "릴",
-        "awayTeam": "Le Havre AC",
-        "matchSummary": "릴 vs Le Havre AC"
+        "awayTeam": "Stade Brestois 29",
+        "matchSummary": "릴 vs Stade Brestois 29"
       }
     },
     {
@@ -51,13 +51,13 @@
       "name": "브루노 페르난데스",
       "team": "맨체스터 유나이티드",
       "league": "EPL",
-      "pts": 5,
+      "pts": 6,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "10/11 01:30 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "토트넘",
-        "matchSummary": "맨체스터 유나이티드 vs 토트넘"
+        "matchDate": "10/18 22:00 KST",
+        "homeTeam": "Leeds United",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "Leeds United vs 맨체스터 유나이티드"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 21,
-      "assists": 4,
+      "pts": 24,
+      "assists": 5,
       "nextMatch": {
-        "matchDate": "10/11 01:30 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "헤타페",
-        "matchSummary": "바르셀로나 vs 헤타페"
+        "matchDate": "10/18 01:30 KST",
+        "homeTeam": "베티스",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "베티스 vs 바르셀로나"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 16,
-      "assists": 1,
+      "pts": 19,
+      "assists": 2,
       "nextMatch": {
-        "matchDate": "10/10 23:15 KST",
-        "homeTeam": "Deportivo Alavés",
+        "matchDate": "10/17 21:00 KST",
+        "homeTeam": "에스파뇰",
         "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "Deportivo Alavés vs 아틀레티코 마드리드"
+        "matchSummary": "에스파뇰 vs 아틀레티코 마드리드"
       }
     },
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 8,
+      "pts": 11,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/11 03:45 KST",
-        "homeTeam": "PSG",
-        "awayTeam": "Le Mans",
-        "matchSummary": "PSG vs Le Mans"
+        "matchDate": "10/18 00:15 KST",
+        "homeTeam": "RC Strasbourg Alsace",
+        "awayTeam": "PSG",
+        "matchSummary": "RC Strasbourg Alsace vs PSG"
       }
     }
   ]
