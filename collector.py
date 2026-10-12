@@ -27,6 +27,12 @@ PLAYERS_CONFIG = [
     {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1"}
 ]
 
+# API 누락 대비 수동 어시스트 최소 보정값 (API 수치와 수동 지정 값 중 더 높은 값을 사용)
+MANUAL_ASSISTS = {
+    "우스만 뎀벨레": 1,
+    # 필요시 추가 선수 지정 가능 (예: "부카요 사카": 1)
+}
+
 TEAM_NAME_KOR = {
     "Real Madrid CF": "레알 마드리드",
     "Club Atlético de Madrid": "아틀레티코 마드리드",
@@ -160,6 +166,7 @@ def main():
     for p in PLAYERS_CONFIG:
         pts = all_standings.get(p["team_id"], 0)
 
+        # 1. API 기반 어시스트 수집
         ast = 0
         for api_pname, a_val in all_assists.items():
             api_clean = api_pname.replace("é", "e").replace("è", "e").lower()
@@ -172,6 +179,10 @@ def main():
                     break
             if matched:
                 break
+
+        # 2. 수동 지정 최소 어시스트 수치 적용 (API가 못 가져오더라도 보정)
+        manual_ast = MANUAL_ASSISTS.get(p["name"], 0)
+        final_ast = max(ast, manual_ast)
 
         next_match = all_matches.get(p["team_id"], {
             "matchDate": "일정 없음",
@@ -186,7 +197,7 @@ def main():
             "team": p["team_name"],
             "league": p["league_name"],
             "pts": pts,
-            "assists": ast,
+            "assists": final_ast,
             "nextMatch": next_match
         })
 
