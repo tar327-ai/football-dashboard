@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-11",
-    "lastUpdated": "2026-10-11 00:05 KST"
+    "dataDate": "2026-10-12",
+    "lastUpdated": "2026-10-12 00:13 KST"
   },
   "players": [
     {
@@ -79,13 +79,13 @@
       "name": "메이슨 그린우드",
       "team": "마르세유",
       "league": "Ligue 1",
-      "pts": 3,
+      "pts": 6,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/12 03:45 KST",
-        "homeTeam": "ES Troyes AC",
+        "matchDate": "10/18 22:00 KST",
+        "homeTeam": "Angers SCO",
         "awayTeam": "마르세유",
-        "matchSummary": "ES Troyes AC vs 마르세유"
+        "matchSummary": "Angers SCO vs 마르세유"
       }
     },
     {
@@ -93,13 +93,13 @@
       "name": "라얀 셰르키",
       "team": "맨체스터 시티",
       "league": "EPL",
-      "pts": 15,
+      "pts": 18,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/12 00:30 KST",
-        "homeTeam": "리버풀",
-        "awayTeam": "맨체스터 시티",
-        "matchSummary": "리버풀 vs 맨체스터 시티"
+        "matchDate": "10/17 23:00 KST",
+        "homeTeam": "맨체스터 시티",
+        "awayTeam": "Ipswich Town",
+        "matchSummary": "맨체스터 시티 vs Ipswich Town"
       }
     },
     {
