@@ -14,7 +14,7 @@ PLAYERS_CONFIG = [
     # 햆
     {"participant": "햆", "name": "부카요 사카", "search_names": ["Bukayo Saka", "Saka"], "team_name": "아스널", "team_id": 57, "league_code": "PL", "league_name": "EPL"},
     {"participant": "햆", "name": "주드 벨링엄", "search_names": ["Jude Bellingham", "Bellingham"], "team_name": "레알 마드리드", "team_id": 86, "league_code": "PD", "league_name": "LaLiga"},
-    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "search_names": ["Håkon Arnar Haraldsson", "Haraldsson"], "team_name": "릴", "team_id": 521, "league_code": "FL1", "league_name": "Ligue 1"},
+    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "search_names": ["Håkon Arnar Haraldsson", "Haraldsson", "Hakon"], "team_name": "릴", "team_id": 521, "league_code": "FL1", "league_name": "Ligue 1"},
 
     # 갮
     {"participant": "갮", "name": "브루노 페르난데스", "search_names": ["Bruno Fernandes", "Fernandes"], "team_name": "맨체스터 유나이티드", "team_id": 66, "league_code": "PL", "league_name": "EPL"},
@@ -24,12 +24,10 @@ PLAYERS_CONFIG = [
     # 돖
     {"participant": "돖", "name": "라얀 셰르키", "search_names": ["Rayan Cherki", "Cherki"], "team_name": "맨체스터 시티", "team_id": 65, "league_code": "PL", "league_name": "EPL"},
     {"participant": "돖", "name": "알렉스 바에나", "search_names": ["Álex Baena", "Alex Baena", "Baena"], "team_name": "아틀레티코 마드리드", "team_id": 78, "league_code": "PD", "league_name": "LaLiga"},
-    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1"}
+    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1"}
 ]
 
-# 영어 공식 팀명을 깔끔한 한글 팀명으로 매핑 (주요 구단 보완)
 TEAM_NAME_KOR = {
-    # LaLiga
     "Real Madrid CF": "레알 마드리드",
     "Club Atlético de Madrid": "아틀레티코 마드리드",
     "FC Barcelona": "바르셀로나",
@@ -50,8 +48,6 @@ TEAM_NAME_KOR = {
     "UD Las Palmas": "라스팔마스",
     "CD Leganés": "레가네스",
     "D. Alavés": "알라베스",
-
-    # EPL
     "Arsenal FC": "아스널",
     "Manchester City FC": "맨체스터 시티",
     "Manchester United FC": "맨체스터 유나이티드",
@@ -63,8 +59,6 @@ TEAM_NAME_KOR = {
     "Newcastle United FC": "뉴캐슬",
     "Brighton & Hove Albion FC": "브라이튼",
     "West Ham United FC": "웨스트햄",
-
-    # Ligue 1
     "Paris Saint-Germain FC": "PSG",
     "Olympique de Marseille": "마르세유",
     "Lille OSC": "릴",
@@ -75,12 +69,9 @@ TEAM_NAME_KOR = {
 }
 
 def clean_team_name(raw_name):
-    """팀 이름 매핑 처리 및 가독성 개선"""
     if raw_name in TEAM_NAME_KOR:
         return TEAM_NAME_KOR[raw_name]
-    # 매핑되지 않은 팀 이름에서 FC, CF 등 접미사 정리
-    clean = raw_name.replace(" FC", "").replace(" CF", "").replace(" de Fútbol", "").strip()
-    return clean
+    return raw_name.replace(" FC", "").replace(" CF", "").replace(" de Fútbol", "").strip()
 
 def fetch_league_standings(league_code):
     url = f"https://api.football-data.org/v4/competitions/{league_code}/standings"
@@ -119,7 +110,6 @@ def fetch_upcoming_matches(league_code):
         res = requests.get(url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             data = res.json()
-            # 경기 날짜순 정렬
             matches = sorted(data.get("matches", []), key=lambda x: x.get("utcDate", ""))
             
             for m in matches:
@@ -133,7 +123,6 @@ def fetch_upcoming_matches(league_code):
 
                 home_id = m["homeTeam"]["id"]
                 away_id = m["awayTeam"]["id"]
-                
                 home_name = clean_team_name(m["homeTeam"]["name"])
                 away_name = clean_team_name(m["awayTeam"]["name"])
 
@@ -144,7 +133,6 @@ def fetch_upcoming_matches(league_code):
                     "matchSummary": f"{home_name} vs {away_name}"
                 }
 
-                # 각 팀별 가장 빠르게 다가오는 1경기만 수집
                 if home_id not in matches_by_team:
                     matches_by_team[home_id] = match_info
                 if away_id not in matches_by_team:
@@ -174,11 +162,15 @@ def main():
 
         ast = 0
         for api_pname, a_val in all_assists.items():
+            api_clean = api_pname.replace("é", "e").replace("è", "e").lower()
+            matched = False
             for search_name in p["search_names"]:
-                if search_name.lower() in api_pname.lower() or api_pname.lower() in search_name.lower():
+                search_clean = search_name.replace("é", "e").replace("è", "e").lower()
+                if search_clean in api_clean or api_clean in search_clean:
                     ast = a_val
+                    matched = True
                     break
-            if ast > 0:
+            if matched:
                 break
 
         next_match = all_matches.get(p["team_id"], {
