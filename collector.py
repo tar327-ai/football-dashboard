@@ -9,7 +9,7 @@ HEADERS = {
     "X-Auth-Token": API_KEY
 }
 
-# 참가자별 선수 및 팀 정보 설정
+# 참가자별 선수/팀 설정
 PLAYERS_CONFIG = [
     # 햆
     {"participant": "햆", "name": "부카요 사카", "search_names": ["Bukayo Saka", "Saka"], "team_name": "아스널", "team_id": 57, "league_code": "PL", "league_name": "EPL"},
@@ -24,14 +24,8 @@ PLAYERS_CONFIG = [
     # 돖
     {"participant": "돖", "name": "라얀 셰르키", "search_names": ["Rayan Cherki", "Cherki"], "team_name": "맨체스터 시티", "team_id": 65, "league_code": "PL", "league_name": "EPL"},
     {"participant": "돖", "name": "알렉스 바에나", "search_names": ["Álex Baena", "Alex Baena", "Baena"], "team_name": "아틀레티코 마드리드", "team_id": 78, "league_code": "PD", "league_name": "LaLiga"},
-    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1"}
+    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1", "player_id": 3467}
 ]
-
-# API 누락 대비 수동 어시스트 최소 보정값 (API 수치와 수동 지정 값 중 더 높은 값을 사용)
-MANUAL_ASSISTS = {
-    "우스만 뎀벨레": 1,
-    # 필요시 추가 선수 지정 가능 (예: "부카요 사카": 1)
-}
 
 TEAM_NAME_KOR = {
     "Real Madrid CF": "레알 마드리드",
@@ -74,6 +68,16 @@ TEAM_NAME_KOR = {
     "RC Lens": "랑스"
 }
 
+def load_existing_data():
+    if os.path.exists("data.json"):
+        try:
+            with open("data.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return {p["name"]: p.get("assists", 0) for p in data.get("players", [])}
+        except Exception:
+            return {}
+    return {}
+
 def clean_team_name(raw_name):
     if raw_name in TEAM_NAME_KOR:
         return TEAM_NAME_KOR[raw_name]
@@ -108,6 +112,24 @@ def fetch_top_scorers_and_assists(league_code):
     except Exception as e:
         print(f"[{league_code}] 어시스트 조회 오류:", e)
     return assists_map
+
+def fetch_single_player_assists(player_id):
+    """상위 명단 누락 시 개별 선수 스태츠 직접 조회"""
+    if not player_id:
+        return 0
+    url = f"https://api.football-data.org/v4/persons/{player_id}"
+    try:
+        res = requests.get(url, headers=HEADERS, timeout=10)
+        if res.status_code == 200:
+            data = res.json()
+            # currentTeam 또는 stats 정보 처리
+            running_competitions = data.get("runningCompetitions", [])
+            for comp in running_competitions:
+                if comp.get("code") == "FL1":
+                    return comp.get("assists", 0)
+    except Exception as e:
+        print(f"[Player ID: {player_id}] 개별 조회 실패:", e)
+    return 0
 
 def fetch_upcoming_matches(league_code):
     url = f"https://api.football-data.org/v4/competitions/{league_code}/matches?status=SCHEDULED"
@@ -152,6 +174,8 @@ def main():
     data_date = now.strftime("%Y-%m-%d")
     last_updated = now.strftime("%Y-%m-%d %H:%M KST")
 
+    existing_assists = load_existing_data()
+
     league_codes = ["PL", "PD", "FL1"]
     all_standings = {}
     all_assists = {}
@@ -166,23 +190,27 @@ def main():
     for p in PLAYERS_CONFIG:
         pts = all_standings.get(p["team_id"], 0)
 
-        # 1. API 기반 어시스트 수집
-        ast = 0
+        # 1. 리그 전체 어시스트 명단 검색
+        fetched_ast = 0
         for api_pname, a_val in all_assists.items():
             api_clean = api_pname.replace("é", "e").replace("è", "e").lower()
             matched = False
             for search_name in p["search_names"]:
                 search_clean = search_name.replace("é", "e").replace("è", "e").lower()
                 if search_clean in api_clean or api_clean in search_clean:
-                    ast = a_val
+                    fetched_ast = a_val
                     matched = True
                     break
             if matched:
                 break
 
-        # 2. 수동 지정 최소 어시스트 수치 적용 (API가 못 가져오더라도 보정)
-        manual_ast = MANUAL_ASSISTS.get(p["name"], 0)
-        final_ast = max(ast, manual_ast)
+        # 2. 명단에 없고 player_id가 정의된 경우 직접 선수 API 조회
+        if fetched_ast == 0 and p.get("player_id"):
+            fetched_ast = fetch_single_player_assists(p.get("player_id"))
+
+        # 3. 누적 점수 보존 (기존 기록 vs API 수치 중 최대값 유지)
+        prev_ast = existing_assists.get(p["name"], 0)
+        final_ast = max(fetched_ast, prev_ast)
 
         next_match = all_matches.get(p["team_id"], {
             "matchDate": "일정 없음",
@@ -212,7 +240,7 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print("data.json 업데이트 완료!")
+    print("data.json 자동 누적 및 개별 보완 업데이트 완료!")
 
 if __name__ == "__main__":
     main()
