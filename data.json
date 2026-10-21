@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-10-21",
-    "lastUpdated": "2026-10-21 00:04 KST"
+    "lastUpdated": "2026-10-21 00:10 KST"
   },
   "players": [
     {
@@ -122,7 +122,7 @@
       "team": "PSG",
       "league": "Ligue 1",
       "pts": 14,
-      "assists": 0,
+      "assists": 2,
       "nextMatch": {
         "matchDate": "10/18 00:15 KST",
         "homeTeam": "RC Strasbourg Alsace",
