@@ -1,6 +1,7 @@
 import os
 import json
 import datetime
+import time
 import requests
 
 API_KEY = os.getenv("FOOTBALL_DATA_API_KEY")
@@ -9,7 +10,7 @@ HEADERS = {
     "X-Auth-Token": API_KEY
 }
 
-# 참가자별 선수/팀 설정
+# 참가자별 선수 및 팀 정보 설정
 PLAYERS_CONFIG = [
     # 햆
     {"participant": "햆", "name": "부카요 사카", "search_names": ["Bukayo Saka", "Saka"], "team_name": "아스널", "team_id": 57, "league_code": "PL", "league_name": "EPL"},
@@ -24,7 +25,7 @@ PLAYERS_CONFIG = [
     # 돖
     {"participant": "돖", "name": "라얀 셰르키", "search_names": ["Rayan Cherki", "Cherki"], "team_name": "맨체스터 시티", "team_id": 65, "league_code": "PL", "league_name": "EPL"},
     {"participant": "돖", "name": "알렉스 바에나", "search_names": ["Álex Baena", "Alex Baena", "Baena"], "team_name": "아틀레티코 마드리드", "team_id": 78, "league_code": "PD", "league_name": "LaLiga"},
-    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1", "player_id": 3467}
+    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1"}
 ]
 
 TEAM_NAME_KOR = {
@@ -68,16 +69,6 @@ TEAM_NAME_KOR = {
     "RC Lens": "랑스"
 }
 
-def load_existing_data():
-    if os.path.exists("data.json"):
-        try:
-            with open("data.json", "r", encoding="utf-8") as f:
-                data = json.load(f)
-                return {p["name"]: p.get("assists", 0) for p in data.get("players", [])}
-        except Exception:
-            return {}
-    return {}
-
 def clean_team_name(raw_name):
     if raw_name in TEAM_NAME_KOR:
         return TEAM_NAME_KOR[raw_name]
@@ -98,6 +89,7 @@ def fetch_league_standings(league_code):
     return team_pts
 
 def fetch_top_scorers_and_assists(league_code):
+    """리그 Top 100 어시스트 수집"""
     url = f"https://api.football-data.org/v4/competitions/{league_code}/scorers?limit=100"
     assists_map = {}
     try:
@@ -113,23 +105,34 @@ def fetch_top_scorers_and_assists(league_code):
         print(f"[{league_code}] 어시스트 조회 오류:", e)
     return assists_map
 
-def fetch_single_player_assists(player_id):
-    """상위 명단 누락 시 개별 선수 스태츠 직접 조회"""
-    if not player_id:
-        return 0
-    url = f"https://api.football-data.org/v4/persons/{player_id}"
+def fetch_team_matches_assists(team_id, search_names):
+    """[핵심 개변] 순위권 밖 선수를 위해 팀 전체 경기 상세 데이터를 뒤져 어시스트 합산"""
+    url = f"https://api.football-data.org/v4/teams/{team_id}/matches?status=FINISHED"
+    total_assists = 0
     try:
+        time.sleep(1.2)  # API 분당 호출 제한(Rate limit) 방지
         res = requests.get(url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
             data = res.json()
-            # currentTeam 또는 stats 정보 처리
-            running_competitions = data.get("runningCompetitions", [])
-            for comp in running_competitions:
-                if comp.get("code") == "FL1":
-                    return comp.get("assists", 0)
+            for m in data.get("matches", []):
+                # 리그 경기만 한정 (컵대회/챔스 제외)
+                if m.get("competition", {}).get("code") not in ["PL", "PD", "FL1"]:
+                    continue
+                
+                goals = m.get("goals", [])
+                for g in goals:
+                    assist_player = g.get("assist", {})
+                    if assist_player:
+                        a_name = assist_player.get("name", "")
+                        a_clean = a_name.replace("é", "e").replace("è", "e").lower()
+                        for s_name in search_names:
+                            s_clean = s_name.replace("é", "e").replace("è", "e").lower()
+                            if s_clean in a_clean or a_clean in s_clean:
+                                total_assists += 1
+                                break
     except Exception as e:
-        print(f"[Player ID: {player_id}] 개별 조회 실패:", e)
-    return 0
+        print(f"[Team ID {team_id}] 경기 상세 어시스트 조회 오류:", e)
+    return total_assists
 
 def fetch_upcoming_matches(league_code):
     url = f"https://api.football-data.org/v4/competitions/{league_code}/matches?status=SCHEDULED"
@@ -174,8 +177,6 @@ def main():
     data_date = now.strftime("%Y-%m-%d")
     last_updated = now.strftime("%Y-%m-%d %H:%M KST")
 
-    existing_assists = load_existing_data()
-
     league_codes = ["PL", "PD", "FL1"]
     all_standings = {}
     all_assists = {}
@@ -185,12 +186,13 @@ def main():
         all_standings.update(fetch_league_standings(code))
         all_assists.update(fetch_top_scorers_and_assists(code))
         all_matches.update(fetch_upcoming_matches(code))
+        time.sleep(1.2)
 
     result_players = []
     for p in PLAYERS_CONFIG:
         pts = all_standings.get(p["team_id"], 0)
 
-        # 1. 리그 전체 어시스트 명단 검색
+        # 1차: 리그 Top 100 어시스트 명단에서 탐색
         fetched_ast = 0
         for api_pname, a_val in all_assists.items():
             api_clean = api_pname.replace("é", "e").replace("è", "e").lower()
@@ -204,13 +206,11 @@ def main():
             if matched:
                 break
 
-        # 2. 명단에 없고 player_id가 정의된 경우 직접 선수 API 조회
-        if fetched_ast == 0 and p.get("player_id"):
-            fetched_ast = fetch_single_player_assists(p.get("player_id"))
-
-        # 3. 누적 점수 보존 (기존 기록 vs API 수치 중 최대값 유지)
-        prev_ast = existing_assists.get(p["name"], 0)
-        final_ast = max(fetched_ast, prev_ast)
+        # 2차 교차검증: Top 100 명단에서 어시스트가 0으로 나오거나 안 보일 경우, 팀 전체 경기 기록 직접 전수조사
+        team_matches_ast = fetch_team_matches_assists(p["team_id"], p["search_names"])
+        
+        # 교차 검증 중 더 높은 어시스트 값 채택
+        final_ast = max(fetched_ast, team_matches_ast)
 
         next_match = all_matches.get(p["team_id"], {
             "matchDate": "일정 없음",
@@ -240,7 +240,7 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print("data.json 자동 누적 및 개별 보완 업데이트 완료!")
+    print("data.json 이중 교차검증 완전 자동 업데이트 완료!")
 
 if __name__ == "__main__":
     main()
