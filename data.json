@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-23",
-    "lastUpdated": "2026-10-23 23:44 KST"
+    "dataDate": "2026-10-24",
+    "lastUpdated": "2026-10-24 22:53 KST"
   },
   "players": [
     {
@@ -9,7 +9,7 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 18,
+      "pts": 21,
       "assists": 0,
       "nextMatch": {
         "matchDate": "10/24 23:00 KST",
@@ -96,10 +96,10 @@
       "pts": 21,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/24 20:30 KST",
-        "homeTeam": "애스턴 빌라",
-        "awayTeam": "맨체스터 시티",
-        "matchSummary": "애스턴 빌라 vs 맨체스터 시티"
+        "matchDate": "11/01 00:00 KST",
+        "homeTeam": "맨체스터 시티",
+        "awayTeam": "브라이튼",
+        "matchSummary": "맨체스터 시티 vs 브라이튼"
       }
     },
     {
@@ -107,7 +107,7 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 22,
+      "pts": 25,
       "assists": 2,
       "nextMatch": {
         "matchDate": "10/25 04:00 KST",
