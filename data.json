@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-24",
-    "lastUpdated": "2026-10-24 22:53 KST"
+    "dataDate": "2026-10-25",
+    "lastUpdated": "2026-10-25 23:00 KST"
   },
   "players": [
     {
@@ -12,10 +12,10 @@
       "pts": 21,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/24 23:00 KST",
-        "homeTeam": "아스널",
-        "awayTeam": "에버튼",
-        "matchSummary": "아스널 vs 에버튼"
+        "matchDate": "11/02 01:30 KST",
+        "homeTeam": "리버풀",
+        "awayTeam": "아스널",
+        "matchSummary": "리버풀 vs 아스널"
       }
     },
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 21,
+      "pts": 24,
       "assists": 3,
       "nextMatch": {
-        "matchDate": "10/26 05:00 KST",
-        "homeTeam": "바르셀로나",
+        "matchDate": "11/02 00:15 KST",
+        "homeTeam": "Real Racing Club de Santander",
         "awayTeam": "레알 마드리드",
-        "matchSummary": "바르셀로나 vs 레알 마드리드"
+        "matchSummary": "Real Racing Club de Santander vs 레알 마드리드"
       }
     },
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 14,
+      "pts": 15,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/25 23:00 KST",
-        "homeTeam": "모나코",
-        "awayTeam": "릴",
-        "matchSummary": "모나코 vs 릴"
+        "matchDate": "10/31 05:05 KST",
+        "homeTeam": "릴",
+        "awayTeam": "Racing Club de Lens",
+        "matchSummary": "릴 vs Racing Club de Lens"
       }
     },
     {
@@ -54,10 +54,10 @@
       "pts": 7,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "10/25 23:00 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "AFC Bournemouth",
-        "matchSummary": "맨체스터 유나이티드 vs AFC Bournemouth"
+        "matchDate": "10/31 21:30 KST",
+        "homeTeam": "첼시",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "첼시 vs 맨체스터 유나이티드"
       }
     },
     {
@@ -68,10 +68,10 @@
       "pts": 27,
       "assists": 6,
       "nextMatch": {
-        "matchDate": "10/26 05:00 KST",
+        "matchDate": "11/01 05:00 KST",
         "homeTeam": "바르셀로나",
-        "awayTeam": "레알 마드리드",
-        "matchSummary": "바르셀로나 vs 레알 마드리드"
+        "awayTeam": "Deportivo Alavés",
+        "matchSummary": "바르셀로나 vs Deportivo Alavés"
       }
     },
     {
@@ -79,13 +79,13 @@
       "name": "메이슨 그린우드",
       "team": "마르세유",
       "league": "Ligue 1",
-      "pts": 9,
+      "pts": 12,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/26 01:15 KST",
+        "matchDate": "11/02 04:45 KST",
         "homeTeam": "마르세유",
-        "awayTeam": "Le Havre AC",
-        "matchSummary": "마르세유 vs Le Havre AC"
+        "awayTeam": "Toulouse",
+        "matchSummary": "마르세유 vs Toulouse"
       }
     },
     {
@@ -110,10 +110,10 @@
       "pts": 25,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/25 04:00 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "RC Deportivo La Coruña",
-        "matchSummary": "아틀레티코 마드리드 vs RC Deportivo La Coruña"
+        "matchDate": "10/31 22:00 KST",
+        "homeTeam": "Levante UD",
+        "awayTeam": "아틀레티코 마드리드",
+        "matchSummary": "Levante UD vs 아틀레티코 마드리드"
       }
     },
     {
