@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-25",
-    "lastUpdated": "2026-10-25 23:00 KST"
+    "dataDate": "2026-10-27",
+    "lastUpdated": "2026-10-27 00:13 KST"
   },
   "players": [
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 14,
+      "pts": 17,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/27 04:30 KST",
-        "homeTeam": "PSG",
-        "awayTeam": "리옹",
-        "matchSummary": "PSG vs 리옹"
+        "matchDate": "10/31 03:00 KST",
+        "homeTeam": "Le Havre AC",
+        "awayTeam": "PSG",
+        "matchSummary": "Le Havre AC vs PSG"
       }
     }
   ]
