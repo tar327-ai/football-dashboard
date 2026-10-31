@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-10-31",
-    "lastUpdated": "2026-10-31 00:21 KST"
+    "lastUpdated": "2026-10-31 23:56 KST"
   },
   "players": [
     {
@@ -54,10 +54,10 @@
       "pts": 7,
       "assists": 1,
       "nextMatch": {
-        "matchDate": "10/31 21:30 KST",
-        "homeTeam": "첼시",
-        "awayTeam": "맨체스터 유나이티드",
-        "matchSummary": "첼시 vs 맨체스터 유나이티드"
+        "matchDate": "11/09 01:30 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "애스턴 빌라",
+        "matchSummary": "맨체스터 유나이티드 vs 애스턴 빌라"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 27,
-      "assists": 6,
+      "pts": 30,
+      "assists": 7,
       "nextMatch": {
-        "matchDate": "11/01 05:00 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "Deportivo Alavés",
-        "matchSummary": "바르셀로나 vs Deportivo Alavés"
+        "matchDate": "11/09 05:00 KST",
+        "homeTeam": "아틀레티코 마드리드",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "아틀레티코 마드리드 vs 바르셀로나"
       }
     },
     {
@@ -96,10 +96,10 @@
       "pts": 21,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/01 00:00 KST",
-        "homeTeam": "맨체스터 시티",
-        "awayTeam": "브라이튼",
-        "matchSummary": "맨체스터 시티 vs 브라이튼"
+        "matchDate": "11/08 02:30 KST",
+        "homeTeam": "Nottingham Forest",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "Nottingham Forest vs 맨체스터 시티"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 25,
-      "assists": 2,
+      "pts": 28,
+      "assists": 3,
       "nextMatch": {
-        "matchDate": "10/31 22:00 KST",
-        "homeTeam": "Levante UD",
-        "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "Levante UD vs 아틀레티코 마드리드"
+        "matchDate": "11/09 05:00 KST",
+        "homeTeam": "아틀레티코 마드리드",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "아틀레티코 마드리드 vs 바르셀로나"
       }
     },
     {
