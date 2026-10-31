@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-30",
-    "lastUpdated": "2026-10-30 00:36 KST"
+    "dataDate": "2026-10-31",
+    "lastUpdated": "2026-10-31 00:21 KST"
   },
   "players": [
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 15,
+      "pts": 18,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "10/31 05:05 KST",
-        "homeTeam": "릴",
-        "awayTeam": "Racing Club de Lens",
-        "matchSummary": "릴 vs Racing Club de Lens"
+        "matchDate": "11/08 23:00 KST",
+        "homeTeam": "Stade Rennais 1901",
+        "awayTeam": "릴",
+        "matchSummary": "Stade Rennais 1901 vs 릴"
       }
     },
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 17,
+      "pts": 20,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "10/31 03:00 KST",
-        "homeTeam": "Le Havre AC",
-        "awayTeam": "PSG",
-        "matchSummary": "Le Havre AC vs PSG"
+        "matchDate": "11/08 04:45 KST",
+        "homeTeam": "PSG",
+        "awayTeam": "ES Troyes AC",
+        "matchSummary": "PSG vs ES Troyes AC"
       }
     }
   ]
