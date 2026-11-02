@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-10-31",
-    "lastUpdated": "2026-10-31 23:56 KST"
+    "dataDate": "2026-11-02",
+    "lastUpdated": "2026-11-02 00:13 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 21,
+      "pts": 24,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/02 01:30 KST",
-        "homeTeam": "리버풀",
-        "awayTeam": "아스널",
-        "matchSummary": "리버풀 vs 아스널"
+        "matchDate": "11/08 00:00 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "Hull City AFC",
+        "matchSummary": "아스널 vs Hull City AFC"
       }
     },
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 24,
+      "pts": 27,
       "assists": 3,
       "nextMatch": {
-        "matchDate": "11/02 00:15 KST",
-        "homeTeam": "Real Racing Club de Santander",
+        "matchDate": "11/08 05:00 KST",
+        "homeTeam": "발렌시아",
         "awayTeam": "레알 마드리드",
-        "matchSummary": "Real Racing Club de Santander vs 레알 마드리드"
+        "matchSummary": "발렌시아 vs 레알 마드리드"
       }
     },
     {
@@ -79,13 +79,13 @@
       "name": "메이슨 그린우드",
       "team": "마르세유",
       "league": "Ligue 1",
-      "pts": 12,
+      "pts": 15,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/02 04:45 KST",
-        "homeTeam": "마르세유",
-        "awayTeam": "Toulouse",
-        "matchSummary": "마르세유 vs Toulouse"
+        "matchDate": "11/09 04:45 KST",
+        "homeTeam": "Racing Club de Lens",
+        "awayTeam": "마르세유",
+        "matchSummary": "Racing Club de Lens vs 마르세유"
       }
     },
     {
