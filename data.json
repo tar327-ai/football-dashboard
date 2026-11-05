@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-11-04",
-    "lastUpdated": "2026-11-04 01:01 KST"
+    "dataDate": "2026-11-05",
+    "lastUpdated": "2026-11-05 01:17 KST"
   },
   "players": [
     {
@@ -124,7 +124,7 @@
       "pts": 20,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/08 04:45 KST",
+        "matchDate": "11/08 05:05 KST",
         "homeTeam": "PSG",
         "awayTeam": "ES Troyes AC",
         "matchSummary": "PSG vs ES Troyes AC"
