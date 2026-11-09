@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-11-08",
-    "lastUpdated": "2026-11-08 00:11 KST"
+    "dataDate": "2026-11-09",
+    "lastUpdated": "2026-11-09 00:32 KST"
   },
   "players": [
     {
@@ -37,13 +37,13 @@
       "name": "하콘 아르드나르 하랄손",
       "team": "릴",
       "league": "Ligue 1",
-      "pts": 18,
+      "pts": 21,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/08 23:00 KST",
-        "homeTeam": "Stade Rennais 1901",
-        "awayTeam": "릴",
-        "matchSummary": "Stade Rennais 1901 vs 릴"
+        "matchDate": "11/22 04:45 KST",
+        "homeTeam": "릴",
+        "awayTeam": "리옹",
+        "matchSummary": "릴 vs 리옹"
       }
     },
     {
@@ -51,13 +51,13 @@
       "name": "브루노 페르난데스",
       "team": "맨체스터 유나이티드",
       "league": "EPL",
-      "pts": 7,
-      "assists": 1,
+      "pts": 8,
+      "assists": 2,
       "nextMatch": {
-        "matchDate": "11/09 01:30 KST",
-        "homeTeam": "맨체스터 유나이티드",
-        "awayTeam": "애스턴 빌라",
-        "matchSummary": "맨체스터 유나이티드 vs 애스턴 빌라"
+        "matchDate": "11/23 01:30 KST",
+        "homeTeam": "리버풀",
+        "awayTeam": "맨체스터 유나이티드",
+        "matchSummary": "리버풀 vs 맨체스터 유나이티드"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 30,
-      "assists": 7,
+      "pts": 33,
+      "assists": 8,
       "nextMatch": {
-        "matchDate": "11/09 05:00 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "바르셀로나",
-        "matchSummary": "아틀레티코 마드리드 vs 바르셀로나"
+        "matchDate": "11/22 22:00 KST",
+        "homeTeam": "바르셀로나",
+        "awayTeam": "비야레알",
+        "matchSummary": "바르셀로나 vs 비야레알"
       }
     },
     {
@@ -79,13 +79,13 @@
       "name": "메이슨 그린우드",
       "team": "마르세유",
       "league": "Ligue 1",
-      "pts": 15,
+      "pts": 18,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/09 04:45 KST",
-        "homeTeam": "Racing Club de Lens",
-        "awayTeam": "마르세유",
-        "matchSummary": "Racing Club de Lens vs 마르세유"
+        "matchDate": "11/23 04:45 KST",
+        "homeTeam": "마르세유",
+        "awayTeam": "Le Mans",
+        "matchSummary": "마르세유 vs Le Mans"
       }
     },
     {
@@ -110,10 +110,10 @@
       "pts": 28,
       "assists": 3,
       "nextMatch": {
-        "matchDate": "11/09 05:00 KST",
-        "homeTeam": "아틀레티코 마드리드",
-        "awayTeam": "바르셀로나",
-        "matchSummary": "아틀레티코 마드리드 vs 바르셀로나"
+        "matchDate": "11/23 05:00 KST",
+        "homeTeam": "헤타페",
+        "awayTeam": "아틀레티코 마드리드",
+        "matchSummary": "헤타페 vs 아틀레티코 마드리드"
       }
     },
     {
