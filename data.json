@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-11-21",
-    "lastUpdated": "2026-11-21 01:57 KST"
+    "dataDate": "2026-11-22",
+    "lastUpdated": "2026-11-22 00:56 KST"
   },
   "players": [
     {
@@ -9,13 +9,13 @@
       "name": "부카요 사카",
       "team": "아스널",
       "league": "EPL",
-      "pts": 27,
+      "pts": 28,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/22 02:30 KST",
-        "homeTeam": "뉴캐슬",
-        "awayTeam": "아스널",
-        "matchSummary": "뉴캐슬 vs 아스널"
+        "matchDate": "11/30 01:30 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "아스널 vs 맨체스터 시티"
       }
     },
     {
@@ -23,13 +23,13 @@
       "name": "주드 벨링엄",
       "team": "레알 마드리드",
       "league": "LaLiga",
-      "pts": 30,
+      "pts": 33,
       "assists": 3,
       "nextMatch": {
-        "matchDate": "11/22 05:00 KST",
+        "matchDate": "11/29 05:00 KST",
         "homeTeam": "레알 마드리드",
-        "awayTeam": "셀타 비고",
-        "matchSummary": "레알 마드리드 vs 셀타 비고"
+        "awayTeam": "Deportivo Alavés",
+        "matchSummary": "레알 마드리드 vs Deportivo Alavés"
       }
     },
     {
@@ -40,10 +40,10 @@
       "pts": 21,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/22 04:45 KST",
-        "homeTeam": "릴",
-        "awayTeam": "리옹",
-        "matchSummary": "릴 vs 리옹"
+        "matchDate": "11/29 04:45 KST",
+        "homeTeam": "Le Mans",
+        "awayTeam": "릴",
+        "matchSummary": "Le Mans vs 릴"
       }
     },
     {
@@ -93,13 +93,13 @@
       "name": "라얀 셰르키",
       "team": "맨체스터 시티",
       "league": "EPL",
-      "pts": 21,
+      "pts": 22,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/21 21:30 KST",
-        "homeTeam": "맨체스터 시티",
-        "awayTeam": "Fulham",
-        "matchSummary": "맨체스터 시티 vs Fulham"
+        "matchDate": "11/30 01:30 KST",
+        "homeTeam": "아스널",
+        "awayTeam": "맨체스터 시티",
+        "matchSummary": "아스널 vs 맨체스터 시티"
       }
     },
     {
@@ -121,13 +121,13 @@
       "name": "우스만 뎀벨레",
       "team": "PSG",
       "league": "Ligue 1",
-      "pts": 23,
+      "pts": 26,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/22 01:15 KST",
-        "homeTeam": "니스",
-        "awayTeam": "PSG",
-        "matchSummary": "니스 vs PSG"
+        "matchDate": "11/29 04:45 KST",
+        "homeTeam": "PSG",
+        "awayTeam": "FC Lorient",
+        "matchSummary": "PSG vs FC Lorient"
       }
     }
   ]
