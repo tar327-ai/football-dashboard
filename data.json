@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "dataDate": "2026-11-22",
-    "lastUpdated": "2026-11-22 00:56 KST"
+    "dataDate": "2026-11-23",
+    "lastUpdated": "2026-11-23 01:23 KST"
   },
   "players": [
     {
@@ -54,10 +54,10 @@
       "pts": 8,
       "assists": 2,
       "nextMatch": {
-        "matchDate": "11/23 01:30 KST",
-        "homeTeam": "리버풀",
-        "awayTeam": "맨체스터 유나이티드",
-        "matchSummary": "리버풀 vs 맨체스터 유나이티드"
+        "matchDate": "11/29 00:00 KST",
+        "homeTeam": "맨체스터 유나이티드",
+        "awayTeam": "Brentford",
+        "matchSummary": "맨체스터 유나이티드 vs Brentford"
       }
     },
     {
@@ -65,13 +65,13 @@
       "name": "라민 야말",
       "team": "바르셀로나",
       "league": "LaLiga",
-      "pts": 33,
-      "assists": 8,
+      "pts": 36,
+      "assists": 9,
       "nextMatch": {
-        "matchDate": "11/22 22:00 KST",
-        "homeTeam": "바르셀로나",
-        "awayTeam": "비야레알",
-        "matchSummary": "바르셀로나 vs 비야레알"
+        "matchDate": "11/30 00:15 KST",
+        "homeTeam": "RC Deportivo La Coruña",
+        "awayTeam": "바르셀로나",
+        "matchSummary": "RC Deportivo La Coruña vs 바르셀로나"
       }
     },
     {
@@ -82,10 +82,10 @@
       "pts": 18,
       "assists": 0,
       "nextMatch": {
-        "matchDate": "11/23 04:45 KST",
-        "homeTeam": "마르세유",
-        "awayTeam": "Le Mans",
-        "matchSummary": "마르세유 vs Le Mans"
+        "matchDate": "11/29 23:00 KST",
+        "homeTeam": "AJ Auxerre",
+        "awayTeam": "마르세유",
+        "matchSummary": "AJ Auxerre vs 마르세유"
       }
     },
     {
@@ -107,13 +107,13 @@
       "name": "알렉스 바에나",
       "team": "아틀레티코 마드리드",
       "league": "LaLiga",
-      "pts": 28,
+      "pts": 31,
       "assists": 3,
       "nextMatch": {
-        "matchDate": "11/23 05:00 KST",
-        "homeTeam": "헤타페",
+        "matchDate": "11/29 02:30 KST",
+        "homeTeam": "Elche",
         "awayTeam": "아틀레티코 마드리드",
-        "matchSummary": "헤타페 vs 아틀레티코 마드리드"
+        "matchSummary": "Elche vs 아틀레티코 마드리드"
       }
     },
     {
