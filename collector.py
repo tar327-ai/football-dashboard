@@ -17,19 +17,19 @@ LEAGUE_IDS = [39, 140, 61]
 
 PLAYERS_CONFIG = [
     # 햆
-    {"participant": "햆", "name": "부카요 사카", "team_name": "아스널", "league_id": 39, "league_name": "EPL", "player_id": 1460, "team_id": 42},
-    {"participant": "햆", "name": "주드 벨링엄", "team_name": "레알 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 138810, "team_id": 541},
-    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "team_name": "릴", "league_id": 61, "league_name": "Ligue 1", "player_id": 129712, "team_id": 79},
+    {"participant": "햆", "name": "부카요 사카", "team_name": "아스널", "league_id": 39, "league_name": "EPL", "player_id": 1460, "team_id": 42, "min_assists": 0},
+    {"participant": "햆", "name": "주드 벨링엄", "team_name": "레알 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 138810, "team_id": 541, "min_assists": 3},
+    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "team_name": "릴", "league_id": 61, "league_name": "Ligue 1", "player_id": 129712, "team_id": 79, "min_assists": 0},
 
     # 갮
-    {"participant": "갮", "name": "브루노 페르난데스", "team_name": "맨체스터 유나이티드", "league_id": 39, "league_name": "EPL", "player_id": 1485, "team_id": 33},
-    {"participant": "갮", "name": "라민 야말", "team_name": "바르셀로나", "league_id": 140, "league_name": "LaLiga", "player_id": 382848, "team_id": 529},
-    {"participant": "갮", "name": "메이슨 그린우드", "team_name": "마르세유", "league_id": 61, "league_name": "Ligue 1", "player_id": 152982, "team_id": 81},
+    {"participant": "갮", "name": "브루노 페르난데스", "team_name": "맨체스터 유나이티드", "league_id": 39, "league_name": "EPL", "player_id": 1485, "team_id": 33, "min_assists": 2},
+    {"participant": "갮", "name": "라민 야말", "team_name": "바르셀로나", "league_id": 140, "league_name": "LaLiga", "player_id": 382848, "team_id": 529, "min_assists": 9},
+    {"participant": "갮", "name": "메이슨 그린우드", "team_name": "마르세유", "league_id": 61, "league_name": "Ligue 1", "player_id": 152982, "team_id": 81, "min_assists": 0},
 
     # 돖
-    {"participant": "돖", "name": "라얀 셰르키", "team_name": "맨체스터 시티", "league_id": 39, "league_name": "EPL", "player_id": 158079, "team_id": 50},
-    {"participant": "돖", "name": "알렉스 바에나", "team_name": "아틀레티코 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 128911, "team_id": 530},
-    {"participant": "돖", "name": "우스만 뎀벨레", "team_name": "PSG", "league_id": 61, "league_name": "Ligue 1", "player_id": 2164, "team_id": 85}
+    {"participant": "돖", "name": "라얀 셰르키", "team_name": "맨체스터 시티", "league_id": 39, "league_name": "EPL", "player_id": 158079, "team_id": 50, "min_assists": 2},
+    {"participant": "돖", "name": "알렉스 바에나", "team_name": "아틀레티코 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 128911, "team_id": 530, "min_assists": 3},
+    {"participant": "돖", "name": "우스만 뎀벨레", "team_name": "PSG", "league_id": 61, "league_name": "Ligue 1", "player_id": 2164, "team_id": 85, "min_assists": 3}
 ]
 
 TEAM_NAME_KOR = {
@@ -109,7 +109,6 @@ def fetch_team_standings(league_id, season):
 
 
 def fetch_league_assists(player_id, league_id, season):
-    """해당 선수·리그·시즌의 어시스트 합계 조회 (성공 여부와 값 반환)"""
     url = f"{BASE_URL}/players"
     params = {"id": player_id, "league": league_id, "season": season}
     try:
@@ -191,10 +190,12 @@ def main():
             pts = prev_player.get("pts", 0)
 
         ok, ast_val = fetch_league_assists(p["player_id"], p["league_id"], season)
-        if ok:
-            final_ast = ast_val
-        else:
-            final_ast = prev_player.get("assists", 0)
+        api_ast = ast_val if ok else 0
+        prev_ast = prev_player.get("assists", 0)
+        min_ast = p.get("min_assists", 0)
+
+        # API 값, 이전 저장 값, 최소 기준값 중 가장 큰 값 채택
+        final_ast = max(api_ast, prev_ast, min_ast)
         time.sleep(0.5)
 
         next_match = fetch_next_match(p["team_id"], p["league_id"])
