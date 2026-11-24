@@ -1,203 +1,211 @@
 import os
 import json
 import datetime
+import time
 import requests
 
-API_KEY = os.getenv("FOOTBALL_DATA_API_KEY")
+API_KEY = os.getenv("APIFOOTBALL_KEY")
 
 HEADERS = {
-    "X-Auth-Token": API_KEY
+    "x-apisports-key": API_KEY
 }
 
-# 참가자별 선수 정보 및 선수별 최소 어시스트 보증 수치(base_assists)
+BASE_URL = "https://v3.football.api-sports.io"
+
+# 리그 ID: EPL=39, LaLiga=140, Ligue 1=61
+LEAGUE_IDS = [39, 140, 61]
+
 PLAYERS_CONFIG = [
     # 햆
-    {"participant": "햆", "name": "부카요 사카", "search_names": ["Bukayo Saka", "Saka"], "team_name": "아스널", "team_id": 57, "league_code": "PL", "league_name": "EPL", "base_assists": 0},
-    {"participant": "햆", "name": "주드 벨링엄", "search_names": ["Jude Bellingham", "Bellingham"], "team_name": "레알 마드리드", "team_id": 86, "league_code": "PD", "league_name": "LaLiga", "base_assists": 2},
-    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "search_names": ["Håkon Arnar Haraldsson", "Haraldsson", "Hakon"], "team_name": "릴", "team_id": 521, "league_code": "FL1", "league_name": "Ligue 1", "base_assists": 0},
+    {"participant": "햆", "name": "부카요 사카", "team_name": "아스널", "league_id": 39, "league_name": "EPL", "player_id": 1460, "team_id": 42},
+    {"participant": "햆", "name": "주드 벨링엄", "team_name": "레알 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 138810, "team_id": 541},
+    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "team_name": "릴", "league_id": 61, "league_name": "Ligue 1", "player_id": 129712, "team_id": 79},
 
     # 갮
-    {"participant": "갮", "name": "브루노 페르난데스", "search_names": ["Bruno Fernandes", "Fernandes"], "team_name": "맨체스터 유나이티드", "team_id": 66, "league_code": "PL", "league_name": "EPL", "base_assists": 1},
-    {"participant": "갮", "name": "라민 야말", "search_names": ["Lamine Yamal", "Yamal"], "team_name": "바르셀로나", "team_id": 81, "league_code": "PD", "league_name": "LaLiga", "base_assists": 5},
-    {"participant": "갮", "name": "메이슨 그린우드", "search_names": ["Mason Greenwood", "Greenwood"], "team_name": "마르세유", "team_id": 516, "league_code": "FL1", "league_name": "Ligue 1", "base_assists": 0},
+    {"participant": "갮", "name": "브루노 페르난데스", "team_name": "맨체스터 유나이티드", "league_id": 39, "league_name": "EPL", "player_id": 1485, "team_id": 33},
+    {"participant": "갮", "name": "라민 야말", "team_name": "바르셀로나", "league_id": 140, "league_name": "LaLiga", "player_id": 382848, "team_id": 529},
+    {"participant": "갮", "name": "메이슨 그린우드", "team_name": "마르세유", "league_id": 61, "league_name": "Ligue 1", "player_id": 152982, "team_id": 81},
 
     # 돖
-    {"participant": "돖", "name": "라얀 셰르키", "search_names": ["Rayan Cherki", "Cherki"], "team_name": "맨체스터 시티", "team_id": 65, "league_code": "PL", "league_name": "EPL", "base_assists": 2},
-    {"participant": "돖", "name": "알렉스 바에나", "search_names": ["Álex Baena", "Alex Baena", "Baena"], "team_name": "아틀레티코 마드리드", "team_id": 78, "league_code": "PD", "league_name": "LaLiga", "base_assists": 2},
-    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembélé", "Dembele", "Ousmane Dembele"], "team_name": "PSG", "team_id": 524, "league_code": "FL1", "league_name": "Ligue 1", "base_assists": 2}
+    {"participant": "돖", "name": "라얀 셰르키", "team_name": "맨체스터 시티", "league_id": 39, "league_name": "EPL", "player_id": 158079, "team_id": 50},
+    {"participant": "돖", "name": "알렉스 바에나", "team_name": "아틀레티코 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 128911, "team_id": 530},
+    {"participant": "돖", "name": "우스만 뎀벨레", "team_name": "PSG", "league_id": 61, "league_name": "Ligue 1", "player_id": 2164, "team_id": 85}
 ]
 
 TEAM_NAME_KOR = {
-    "Real Madrid CF": "레알 마드리드",
-    "Club Atlético de Madrid": "아틀레티코 마드리드",
-    "FC Barcelona": "바르셀로나",
-    "Rayo Vallecano de Madrid": "라요 바예카노",
-    "Real Sociedad de Fútbol": "레알 소시에다드",
-    "Valencia CF": "발렌시아",
-    "Sevilla FC": "세비야",
-    "Villarreal CF": "비야레알",
-    "Real Betis Balompié": "베티스",
+    "Real Madrid": "레알 마드리드",
+    "Atletico Madrid": "아틀레티코 마드리드",
+    "Barcelona": "바르셀로나",
+    "Rayo Vallecano": "라요 바예카노",
+    "Real Sociedad": "레알 소시에다드",
+    "Valencia": "발렌시아",
+    "Sevilla": "세비야",
+    "Villarreal": "비야레알",
+    "Real Betis": "베티스",
     "Athletic Club": "아틀레틱 빌바오",
-    "Girona FC": "지로나",
-    "RCD Mallorca": "마요르카",
-    "RC Celta de Vigo": "셀타 비고",
-    "CA Osasuna": "오사수나",
-    "Getafe CF": "헤타페",
-    "RCD Espanyol de Barcelona": "에스파뇰",
-    "Real Valladolid CF": "바야돌리드",
-    "UD Las Palmas": "라스팔마스",
-    "CD Leganés": "레가네스",
-    "D. Alavés": "알라베스",
-    "Arsenal FC": "아스널",
-    "Manchester City FC": "맨체스터 시티",
-    "Manchester United FC": "맨체스터 유나이티드",
-    "Chelsea FC": "첼시",
-    "Liverpool FC": "리버풀",
-    "Tottenham Hotspur FC": "토트넘",
-    "Everton FC": "에버튼",
-    "Aston Villa FC": "애스턴 빌라",
-    "Newcastle United FC": "뉴캐슬",
-    "Brighton & Hove Albion FC": "브라이튼",
-    "West Ham United FC": "웨스트햄",
-    "Paris Saint-Germain FC": "PSG",
-    "Olympique de Marseille": "마르세유",
-    "Lille OSC": "릴",
-    "AS Monaco FC": "모나코",
-    "Olympique Lyonnais": "리옹",
-    "OGC Nice": "니스",
-    "RC Lens": "랑스"
+    "Girona": "지로나",
+    "Mallorca": "마요르카",
+    "Celta Vigo": "셀타 비고",
+    "Osasuna": "오사수나",
+    "Getafe": "헤타페",
+    "Espanyol": "에스파뇰",
+    "Valladolid": "바야돌리드",
+    "Las Palmas": "라스팔마스",
+    "Leganes": "레가네스",
+    "Alaves": "알라베스",
+    "Arsenal": "아스널",
+    "Manchester City": "맨체스터 시티",
+    "Manchester United": "맨체스터 유나이티드",
+    "Chelsea": "첼시",
+    "Liverpool": "리버풀",
+    "Tottenham": "토트넘",
+    "Everton": "에버튼",
+    "Aston Villa": "애스턴 빌라",
+    "Newcastle": "뉴캐슬",
+    "Brighton": "브라이튼",
+    "West Ham": "웨스트햄",
+    "Paris Saint Germain": "PSG",
+    "Marseille": "마르세유",
+    "Lille": "릴",
+    "Monaco": "모나코",
+    "Lyon": "리옹",
+    "Nice": "니스",
+    "Lens": "랑스"
 }
 
-def load_existing_data():
-    """기존 data.json의 누적 어시스트 수치를 읽어옴"""
+
+def get_current_season():
+    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    return now.year if now.month >= 7 else now.year - 1
+
+
+def load_existing_players():
     if os.path.exists("data.json"):
         try:
             with open("data.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
-                return {p["name"]: p.get("assists", 0) for p in data.get("players", [])}
+                return {p["name"]: p for p in data.get("players", [])}
         except Exception:
             return {}
     return {}
 
-def clean_team_name(raw_name):
-    if raw_name in TEAM_NAME_KOR:
-        return TEAM_NAME_KOR[raw_name]
-    return raw_name.replace(" FC", "").replace(" CF", "").replace(" de Fútbol", "").strip()
 
-def fetch_league_standings(league_code):
-    url = f"https://api.football-data.org/v4/competitions/{league_code}/standings"
+def fetch_team_standings(league_id, season):
+    url = f"{BASE_URL}/standings"
+    params = {"league": league_id, "season": season}
     team_pts = {}
     try:
-        res = requests.get(url, headers=HEADERS, timeout=10)
+        res = requests.get(url, headers=HEADERS, params=params, timeout=15)
         if res.status_code == 200:
             data = res.json()
-            standings = data.get("standings", [])[0].get("table", [])
-            for row in standings:
-                team_pts[row["team"]["id"]] = row["points"]
+            resp = data.get("response", [])
+            if resp:
+                standings = resp[0]["league"]["standings"][0]
+                for row in standings:
+                    team_pts[row["team"]["id"]] = row["points"]
     except Exception as e:
-        print(f"[{league_code}] 승점 조회 오류:", e)
+        print(f"[Standings {league_id}] 오류:", e)
     return team_pts
 
-def fetch_top_scorers_and_assists(league_code):
-    url = f"https://api.football-data.org/v4/competitions/{league_code}/scorers?limit=100"
-    assists_map = {}
+
+def fetch_league_assists(player_id, league_id, season):
+    """해당 선수·리그·시즌의 어시스트 합계 조회 (성공 여부와 값 반환)"""
+    url = f"{BASE_URL}/players"
+    params = {"id": player_id, "league": league_id, "season": season}
     try:
-        res = requests.get(url, headers=HEADERS, timeout=10)
+        res = requests.get(url, headers=HEADERS, params=params, timeout=15)
         if res.status_code == 200:
             data = res.json()
-            for item in data.get("scorers", []):
-                p_name = item.get("player", {}).get("name", "")
-                ast = item.get("assists") or 0
-                if p_name:
-                    assists_map[p_name] = ast
+            resp = data.get("response", [])
+            if resp:
+                stats_list = resp[0].get("statistics", [])
+                total = 0
+                found = False
+                for st in stats_list:
+                    if st.get("league", {}).get("id") == league_id:
+                        ast = st.get("goals", {}).get("assists")
+                        total += (ast if ast is not None else 0)
+                        found = True
+                if found:
+                    return True, total
     except Exception as e:
-        print(f"[{league_code}] 어시스트 조회 오류:", e)
-    return assists_map
+        print(f"[Player {player_id} / League {league_id}] 오류:", e)
+    return False, 0
 
-def fetch_upcoming_matches(league_code):
-    url = f"https://api.football-data.org/v4/competitions/{league_code}/matches?status=SCHEDULED"
-    matches_by_team = {}
+
+def fetch_next_match(team_id, league_id):
+    url = f"{BASE_URL}/fixtures"
+    params = {"team": team_id, "league": league_id, "next": 1}
+    kst = datetime.timezone(datetime.timedelta(hours=9))
     try:
-        res = requests.get(url, headers=HEADERS, timeout=10)
+        res = requests.get(url, headers=HEADERS, params=params, timeout=15)
         if res.status_code == 200:
             data = res.json()
-            matches = sorted(data.get("matches", []), key=lambda x: x.get("utcDate", ""))
-            
-            for m in matches:
-                utc_date = m.get("utcDate")
-                if utc_date:
-                    dt = datetime.datetime.fromisoformat(utc_date.replace("Z", "+00:00"))
-                    kst_dt = dt.astimezone(datetime.timezone(datetime.timedelta(hours=9)))
-                    match_time_str = kst_dt.strftime("%m/%d %H:%M KST")
-                else:
-                    match_time_str = "일정 미정"
+            resp = data.get("response", [])
+            if resp:
+                m = resp[0]
+                utc_date = m["fixture"]["date"]
+                dt = datetime.datetime.fromisoformat(utc_date.replace("Z", "+00:00"))
+                match_time_str = dt.astimezone(kst).strftime("%m/%d %H:%M KST")
 
-                home_id = m["homeTeam"]["id"]
-                away_id = m["awayTeam"]["id"]
-                home_name = clean_team_name(m["homeTeam"]["name"])
-                away_name = clean_team_name(m["awayTeam"]["name"])
+                home_raw = m["teams"]["home"]["name"]
+                away_raw = m["teams"]["away"]["name"]
+                home_name = TEAM_NAME_KOR.get(home_raw, home_raw)
+                away_name = TEAM_NAME_KOR.get(away_raw, away_raw)
 
-                match_info = {
+                return {
                     "matchDate": match_time_str,
                     "homeTeam": home_name,
                     "awayTeam": away_name,
                     "matchSummary": f"{home_name} vs {away_name}"
                 }
-
-                if home_id not in matches_by_team:
-                    matches_by_team[home_id] = match_info
-                if away_id not in matches_by_team:
-                    matches_by_team[away_id] = match_info
     except Exception as e:
-        print(f"[{league_code}] 일정 조회 오류:", e)
-    return matches_by_team
+        print(f"[Fixture Team {team_id}] 오류:", e)
+    return None
+
 
 def main():
-    now = datetime.datetime.now()
+    if not API_KEY:
+        raise RuntimeError("APIFOOTBALL_KEY 환경변수가 설정되지 않았습니다.")
+
+    kst = datetime.timezone(datetime.timedelta(hours=9))
+    now = datetime.datetime.now(kst)
+    season = get_current_season()
     data_date = now.strftime("%Y-%m-%d")
     last_updated = now.strftime("%Y-%m-%d %H:%M KST")
 
-    existing_assists = load_existing_data()
+    existing_map = load_existing_players()
 
-    league_codes = ["PL", "PD", "FL1"]
-    all_standings = {}
-    all_assists = {}
-    all_matches = {}
-
-    for code in league_codes:
-        all_standings.update(fetch_league_standings(code))
-        all_assists.update(fetch_top_scorers_and_assists(code))
-        all_matches.update(fetch_upcoming_matches(code))
+    standings_map = {}
+    for l_id in LEAGUE_IDS:
+        standings_map.update(fetch_team_standings(l_id, season))
+        time.sleep(0.5)
 
     result_players = []
     for p in PLAYERS_CONFIG:
-        pts = all_standings.get(p["team_id"], 0)
+        prev_player = existing_map.get(p["name"], {})
 
-        # API 수치 검색
-        fetched_ast = 0
-        for api_pname, a_val in all_assists.items():
-            api_clean = api_pname.replace("é", "e").replace("è", "e").lower()
-            matched = False
-            for search_name in p["search_names"]:
-                search_clean = search_name.replace("é", "e").replace("è", "e").lower()
-                if search_clean in api_clean or api_clean in search_clean:
-                    fetched_ast = a_val
-                    matched = True
-                    break
-            if matched:
-                break
+        if p["team_id"] in standings_map:
+            pts = standings_map[p["team_id"]]
+        else:
+            pts = prev_player.get("pts", 0)
 
-        # [핵심] API 조회 수치, 이전 저장 수치, 기본 보증 수치 중 가장 높은 값을 채택
-        prev_ast = existing_assists.get(p["name"], 0)
-        base_ast = p.get("base_assists", 0)
-        final_ast = max(fetched_ast, prev_ast, base_ast)
+        ok, ast_val = fetch_league_assists(p["player_id"], p["league_id"], season)
+        if ok:
+            final_ast = ast_val
+        else:
+            final_ast = prev_player.get("assists", 0)
+        time.sleep(0.5)
 
-        next_match = all_matches.get(p["team_id"], {
-            "matchDate": "일정 없음",
-            "homeTeam": "-",
-            "awayTeam": "-",
-            "matchSummary": "예정된 리그 경기 없음"
-        })
+        next_match = fetch_next_match(p["team_id"], p["league_id"])
+        if not next_match:
+            next_match = prev_player.get("nextMatch") or {
+                "matchDate": "일정 없음",
+                "homeTeam": "-",
+                "awayTeam": "-",
+                "matchSummary": "예정된 리그 경기 없음"
+            }
+        time.sleep(0.5)
 
         result_players.append({
             "participant": p["participant"],
@@ -220,7 +228,8 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
-    print("data.json 안정 업데이트 완료!")
+    print(f"data.json 업데이트 완료 ({season} 시즌 기준)")
+
 
 if __name__ == "__main__":
     main()
