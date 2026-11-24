@@ -2,6 +2,7 @@ import os
 import json
 import datetime
 import time
+import unicodedata
 import requests
 
 API_KEY = os.getenv("APIFOOTBALL_KEY")
@@ -17,19 +18,19 @@ LEAGUE_IDS = [39, 140, 61]
 
 PLAYERS_CONFIG = [
     # 햆
-    {"participant": "햆", "name": "부카요 사카", "team_name": "아스널", "league_id": 39, "league_name": "EPL", "player_id": 1460, "team_id": 42, "min_assists": 0},
-    {"participant": "햆", "name": "주드 벨링엄", "team_name": "레알 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 138810, "team_id": 541, "min_assists": 3},
-    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "team_name": "릴", "league_id": 61, "league_name": "Ligue 1", "player_id": 129712, "team_id": 79, "min_assists": 0},
+    {"participant": "햆", "name": "부카요 사카", "search_names": ["Bukayo Saka", "Saka"], "team_name": "아스널", "league_id": 39, "league_name": "EPL", "player_id": 1460, "team_id": 42},
+    {"participant": "햆", "name": "주드 벨링엄", "search_names": ["Jude Bellingham", "Bellingham"], "team_name": "레알 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 138810, "team_id": 541},
+    {"participant": "햆", "name": "하콘 아르드나르 하랄손", "search_names": ["Hakon Arnar Haraldsson", "Haraldsson", "Hakon"], "team_name": "릴", "league_id": 61, "league_name": "Ligue 1", "player_id": 129712, "team_id": 79},
 
     # 갮
-    {"participant": "갮", "name": "브루노 페르난데스", "team_name": "맨체스터 유나이티드", "league_id": 39, "league_name": "EPL", "player_id": 1485, "team_id": 33, "min_assists": 2},
-    {"participant": "갮", "name": "라민 야말", "team_name": "바르셀로나", "league_id": 140, "league_name": "LaLiga", "player_id": 382848, "team_id": 529, "min_assists": 9},
-    {"participant": "갮", "name": "메이슨 그린우드", "team_name": "마르세유", "league_id": 61, "league_name": "Ligue 1", "player_id": 152982, "team_id": 81, "min_assists": 0},
+    {"participant": "갮", "name": "브루노 페르난데스", "search_names": ["Bruno Fernandes", "Fernandes"], "team_name": "맨체스터 유나이티드", "league_id": 39, "league_name": "EPL", "player_id": 1485, "team_id": 33},
+    {"participant": "갮", "name": "라민 야말", "search_names": ["Lamine Yamal", "Yamal"], "team_name": "바르셀로나", "league_id": 140, "league_name": "LaLiga", "player_id": 382848, "team_id": 529},
+    {"participant": "갮", "name": "메이슨 그린우드", "search_names": ["Mason Greenwood", "Greenwood"], "team_name": "마르세유", "league_id": 61, "league_name": "Ligue 1", "player_id": 152982, "team_id": 81},
 
     # 돖
-    {"participant": "돖", "name": "라얀 셰르키", "team_name": "맨체스터 시티", "league_id": 39, "league_name": "EPL", "player_id": 158079, "team_id": 50, "min_assists": 2},
-    {"participant": "돖", "name": "알렉스 바에나", "team_name": "아틀레티코 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 128911, "team_id": 530, "min_assists": 3},
-    {"participant": "돖", "name": "우스만 뎀벨레", "team_name": "PSG", "league_id": 61, "league_name": "Ligue 1", "player_id": 2164, "team_id": 85, "min_assists": 3}
+    {"participant": "돖", "name": "라얀 셰르키", "search_names": ["Rayan Cherki", "Cherki"], "team_name": "맨체스터 시티", "league_id": 39, "league_name": "EPL", "player_id": 158079, "team_id": 50},
+    {"participant": "돖", "name": "알렉스 바에나", "search_names": ["Alex Baena", "Baena"], "team_name": "아틀레티코 마드리드", "league_id": 140, "league_name": "LaLiga", "player_id": 128911, "team_id": 530},
+    {"participant": "돖", "name": "우스만 뎀벨레", "search_names": ["Ousmane Dembele", "Dembele"], "team_name": "PSG", "league_id": 61, "league_name": "Ligue 1", "player_id": 2164, "team_id": 85}
 ]
 
 TEAM_NAME_KOR = {
@@ -74,6 +75,14 @@ TEAM_NAME_KOR = {
 }
 
 
+def normalize_text(text):
+    if not text:
+        return ""
+    decomposed = unicodedata.normalize("NFD", text)
+    stripped = "".join(ch for ch in decomposed if unicodedata.category(ch) != "Mn")
+    return stripped.lower().strip()
+
+
 def get_current_season():
     now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
     return now.year if now.month >= 7 else now.year - 1
@@ -108,7 +117,19 @@ def fetch_team_standings(league_id, season):
     return team_pts
 
 
-def fetch_league_assists(player_id, league_id, season):
+def extract_league_assists_from_entry(entry, league_id):
+    stats_list = entry.get("statistics", [])
+    total = 0
+    found = False
+    for st in stats_list:
+        if st.get("league", {}).get("id") == league_id:
+            ast = st.get("goals", {}).get("assists")
+            total += (ast if ast is not None else 0)
+            found = True
+    return found, total
+
+
+def fetch_assists_by_player_id(player_id, league_id, season):
     url = f"{BASE_URL}/players"
     params = {"id": player_id, "league": league_id, "season": season}
     try:
@@ -117,18 +138,55 @@ def fetch_league_assists(player_id, league_id, season):
             data = res.json()
             resp = data.get("response", [])
             if resp:
-                stats_list = resp[0].get("statistics", [])
-                total = 0
-                found = False
-                for st in stats_list:
-                    if st.get("league", {}).get("id") == league_id:
-                        ast = st.get("goals", {}).get("assists")
-                        total += (ast if ast is not None else 0)
-                        found = True
-                if found:
-                    return True, total
+                return extract_league_assists_from_entry(resp[0], league_id)
     except Exception as e:
-        print(f"[Player {player_id} / League {league_id}] 오류:", e)
+        print(f"[Player ID {player_id}] 오류:", e)
+    return False, 0
+
+
+def fetch_assists_by_team_name(team_id, league_id, season, search_names):
+    """ID 조회가 비어 있을 때 팀·리그·시즌 스쿼드에서 이름으로 어시스트 검색"""
+    norm_targets = [normalize_text(n) for n in search_names if n]
+    page = 1
+    while page <= 3:
+        url = f"{BASE_URL}/players"
+        params = {"team": team_id, "league": league_id, "season": season, "page": page}
+        try:
+            res = requests.get(url, headers=HEADERS, params=params, timeout=15)
+            if res.status_code != 200:
+                break
+            data = res.json()
+            resp = data.get("response", [])
+            if not resp:
+                break
+
+            for entry in resp:
+                p_info = entry.get("player", {})
+                candidates = [
+                    normalize_text(p_info.get("name", "")),
+                    normalize_text(p_info.get("firstname", "")),
+                    normalize_text(p_info.get("lastname", "")),
+                    normalize_text(f"{p_info.get('firstname', '')} {p_info.get('lastname', '')}")
+                ]
+                matched = any(
+                    t and any(t == c or t in c for c in candidates if c)
+                    for t in norm_targets
+                )
+                if matched:
+                    found, total = extract_league_assists_from_entry(entry, league_id)
+                    if found:
+                        return True, total
+
+            paging = data.get("paging", {})
+            cur_page = paging.get("current", page)
+            total_pages = paging.get("total", page)
+            if cur_page >= total_pages:
+                break
+            page += 1
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"[Team Squad {team_id} p.{page}] 오류:", e)
+            break
     return False, 0
 
 
@@ -178,7 +236,7 @@ def main():
     standings_map = {}
     for l_id in LEAGUE_IDS:
         standings_map.update(fetch_team_standings(l_id, season))
-        time.sleep(0.5)
+        time.sleep(0.4)
 
     result_players = []
     for p in PLAYERS_CONFIG:
@@ -189,14 +247,16 @@ def main():
         else:
             pts = prev_player.get("pts", 0)
 
-        ok, ast_val = fetch_league_assists(p["player_id"], p["league_id"], season)
-        api_ast = ast_val if ok else 0
-        prev_ast = prev_player.get("assists", 0)
-        min_ast = p.get("min_assists", 0)
+        ok, ast_val = fetch_assists_by_player_id(p["player_id"], p["league_id"], season)
+        if not ok:
+            time.sleep(0.3)
+            ok, ast_val = fetch_assists_by_team_name(
+                p["team_id"], p["league_id"], season, p.get("search_names", [])
+            )
 
-        # API 값, 이전 저장 값, 최소 기준값 중 가장 큰 값 채택
-        final_ast = max(api_ast, prev_ast, min_ast)
-        time.sleep(0.5)
+        prev_ast = prev_player.get("assists", 0)
+        final_ast = max(ast_val, prev_ast) if ok else prev_ast
+        time.sleep(0.4)
 
         next_match = fetch_next_match(p["team_id"], p["league_id"])
         if not next_match:
@@ -206,7 +266,7 @@ def main():
                 "awayTeam": "-",
                 "matchSummary": "예정된 리그 경기 없음"
             }
-        time.sleep(0.5)
+        time.sleep(0.4)
 
         result_players.append({
             "participant": p["participant"],
