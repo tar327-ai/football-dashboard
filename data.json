@@ -1,7 +1,7 @@
 {
   "metadata": {
     "dataDate": "2026-11-24",
-    "lastUpdated": "2026-11-24 17:30 KST"
+    "lastUpdated": "2026-11-24 17:37 KST"
   },
   "players": [
     {
@@ -122,7 +122,7 @@
       "team": "PSG",
       "league": "Ligue 1",
       "pts": 26,
-      "assists": 2,
+      "assists": 3,
       "nextMatch": {
         "matchDate": "11/29 04:45 KST",
         "homeTeam": "PSG",
